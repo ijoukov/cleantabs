@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CleanTabs</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div>
+          <h1>CleanTabs</h1>
+          <p id="summary">Loading tabs...</p>
+        </div>
+        <button id="refreshButton" class="refresh-button" type="button">Refresh</button>
+      </header>
+
+      <section class="filters" aria-label="Tab filters">
+        <label class="field">
+          <span>URL or title</span>
+          <input id="metadataSearch" type="search" autocomplete="off" placeholder="Search URL or title">
+        </label>
+        <label class="field">
+          <span>Page text</span>
+          <div class="search-row">
+            <input id="contentSearch" type="search" autocomplete="off" placeholder="Search loaded page text">
+            <button id="contentSearchButton" type="button">Search</button>
+          </div>
+        </label>
+        <div class="toolbar">
+          <label class="toggle">
+            <input id="newTabsOnly" type="checkbox">
+            <span>New tabs</span>
+          </label>
+          <button id="clearFiltersButton" type="button">Clear</button>
+        </div>
+      </section>
+
+      <section id="contentStatus" class="status" hidden></section>
+      <section id="resultsActions" class="results-actions" hidden>
+        <span id="resultsMeta"></span>
+        <div class="results-buttons">
+          <button id="selectVisibleButton" type="button">Select results</button>
+          <button id="clearSelectionButton" type="button">Clear selection</button>
+          <button id="closeVisibleButton" class="danger" type="button">Close results</button>
+        </div>
+      </section>
+      <section id="groups" class="groups" aria-live="polite"></section>
+      <section id="emptyState" class="empty" hidden>No matching tabs.</section>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "cleantabs",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Chrome extension for duplicate, stale, new, and matching tab cleanup.",
+  "type": "module",
+  "scripts": {
+    "icons": "node scripts/generate-icons.mjs",
+    "validate": "node scripts/validate.mjs",
+    "package": "node scripts/package.mjs"
+  },
+  "license": "MIT"
+}

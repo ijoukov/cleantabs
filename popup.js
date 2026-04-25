@@ -1,0 +1,528 @@
+const NEW_TAB_URLS = new Set([
+  "chrome://newtab/",
+  "chrome://new-tab-page/",
+  "edge://newtab/",
+  "about:newtab"
+]);
+const CONTENT_SEARCH_CONCURRENCY = 4;
+
+const state = {
+  tabs: [],
+  tabMeta: {},
+  contentMatches: null,
+  contentQuery: "",
+  contentSearchRunId: 0,
+  statusMessage: "",
+  selected: new Set(),
+  filters: {
+    metadata: "",
+    newTabsOnly: false
+  }
+};
+
+const els = {
+  summary: document.querySelector("#summary"),
+  refreshButton: document.querySelector("#refreshButton"),
+  metadataSearch: document.querySelector("#metadataSearch"),
+  contentSearch: document.querySelector("#contentSearch"),
+  contentSearchButton: document.querySelector("#contentSearchButton"),
+  newTabsOnly: document.querySelector("#newTabsOnly"),
+  clearFiltersButton: document.querySelector("#clearFiltersButton"),
+  contentStatus: document.querySelector("#contentStatus"),
+  resultsActions: document.querySelector("#resultsActions"),
+  resultsMeta: document.querySelector("#resultsMeta"),
+  selectVisibleButton: document.querySelector("#selectVisibleButton"),
+  clearSelectionButton: document.querySelector("#clearSelectionButton"),
+  closeVisibleButton: document.querySelector("#closeVisibleButton"),
+  groups: document.querySelector("#groups"),
+  emptyState: document.querySelector("#emptyState")
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  bindEvents();
+  refreshTabs();
+});
+
+function bindEvents() {
+  els.refreshButton.addEventListener("click", () => refreshTabs({ preserveContentSearch: false }));
+  els.metadataSearch.addEventListener("input", () => {
+    state.filters.metadata = els.metadataSearch.value.trim().toLowerCase();
+    render();
+  });
+  els.newTabsOnly.addEventListener("change", () => {
+    state.filters.newTabsOnly = els.newTabsOnly.checked;
+    render();
+  });
+  els.clearFiltersButton.addEventListener("click", () => {
+    state.filters.metadata = "";
+    state.filters.newTabsOnly = false;
+    state.contentSearchRunId += 1;
+    state.contentMatches = null;
+    state.contentQuery = "";
+    state.statusMessage = "";
+    setContentSearchBusy(false);
+    state.selected.clear();
+    els.metadataSearch.value = "";
+    els.contentSearch.value = "";
+    els.newTabsOnly.checked = false;
+    render();
+  });
+  els.contentSearchButton.addEventListener("click", runContentSearch);
+  els.contentSearch.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      runContentSearch();
+    }
+  });
+  els.selectVisibleButton.addEventListener("click", () => {
+    for (const tab of getFilteredTabs()) {
+      state.selected.add(tab.id);
+    }
+    render();
+  });
+  els.clearSelectionButton.addEventListener("click", () => {
+    state.selected.clear();
+    render();
+  });
+  els.closeVisibleButton.addEventListener("click", () => {
+    const visibleTabs = getFilteredTabs();
+    const selectedVisibleTabs = visibleTabs.filter((tab) => state.selected.has(tab.id));
+    closeTabs(selectedVisibleTabs.length ? selectedVisibleTabs : visibleTabs);
+  });
+}
+
+async function refreshTabs({ preserveContentSearch = true } = {}) {
+  const [tabs, metaResponse] = await Promise.all([
+    chrome.tabs.query({}),
+    chrome.runtime.sendMessage({ type: "getTabMeta" }).catch(() => ({ tabMeta: {} }))
+  ]);
+
+  if (!preserveContentSearch) {
+    state.contentSearchRunId += 1;
+    state.contentMatches = null;
+    state.contentQuery = "";
+    state.statusMessage = "";
+    els.contentSearch.value = "";
+  }
+
+  state.tabs = tabs.sort((a, b) => a.windowId - b.windowId || a.index - b.index);
+  state.tabMeta = metaResponse?.tabMeta || {};
+  removeMissingSelections();
+  render();
+}
+
+function render() {
+  const filtered = getFilteredTabs();
+  const groups = groupByUrl(filtered);
+  const duplicateCount = groups.filter((group) => group.tabs.length > 1).length;
+
+  els.summary.textContent = `${state.tabs.length} tabs, ${duplicateCount} duplicate URL groups`;
+  renderContentStatus();
+  renderResultsActions(filtered);
+  els.groups.replaceChildren(...groups.map(renderGroup));
+  els.emptyState.hidden = groups.length > 0;
+}
+
+function getFilteredTabs() {
+  return state.tabs.filter((tab) => {
+    if (state.filters.newTabsOnly && !isNewTab(tab)) {
+      return false;
+    }
+
+    if (state.filters.metadata) {
+      const haystack = `${getTabUrl(tab)} ${tab.title || ""}`.toLowerCase();
+      if (!haystack.includes(state.filters.metadata)) {
+        return false;
+      }
+    }
+
+    if (state.contentMatches) {
+      return state.contentMatches.has(tab.id);
+    }
+
+    return true;
+  });
+}
+
+function groupByUrl(tabs) {
+  const byUrl = new Map();
+  for (const tab of tabs) {
+    const key = normalizeUrl(getTabUrl(tab));
+    if (!byUrl.has(key)) {
+      byUrl.set(key, []);
+    }
+    byUrl.get(key).push(tab);
+  }
+
+  return [...byUrl.entries()]
+    .map(([url, groupTabs]) => ({ url, tabs: groupTabs }))
+    .sort((a, b) => {
+      const duplicateDelta = Number(b.tabs.length > 1) - Number(a.tabs.length > 1);
+      return duplicateDelta || b.tabs.length - a.tabs.length || a.url.localeCompare(b.url);
+    });
+}
+
+function renderResultsActions(filteredTabs) {
+  const selectedVisibleTabs = filteredTabs.filter((tab) => state.selected.has(tab.id));
+  const shouldShow = filteredTabs.length > 0 && (hasActiveResultFilter() || selectedVisibleTabs.length > 0);
+
+  els.resultsActions.hidden = !shouldShow;
+  if (!shouldShow) {
+    return;
+  }
+
+  const selectedCount = selectedVisibleTabs.length;
+  const resultLabel = `${filteredTabs.length} visible result${filteredTabs.length === 1 ? "" : "s"}`;
+  const selectedLabel = selectedCount ? `, ${selectedCount} selected` : "";
+  els.resultsMeta.textContent = `${resultLabel}${selectedLabel}`;
+  els.selectVisibleButton.textContent = `Select ${filteredTabs.length}`;
+  els.clearSelectionButton.disabled = state.selected.size === 0;
+  els.closeVisibleButton.disabled = !selectedCount && !hasActiveResultFilter();
+  els.closeVisibleButton.textContent = selectedCount
+    ? `Close ${selectedCount} selected`
+    : `Close ${filteredTabs.length} matching`;
+}
+
+function hasActiveResultFilter() {
+  return Boolean(state.filters.metadata || state.filters.newTabsOnly || state.contentMatches);
+}
+
+function renderGroup(group) {
+  const selectedInGroup = group.tabs.filter((tab) => state.selected.has(tab.id));
+  const groupEl = document.createElement("article");
+  groupEl.className = "group";
+
+  const header = document.createElement("header");
+  header.className = "group-header";
+
+  const title = document.createElement("div");
+  title.className = "group-title";
+  const groupUrl = document.createElement("span");
+  groupUrl.className = "group-url";
+  groupUrl.textContent = group.url;
+  const groupMeta = document.createElement("span");
+  groupMeta.className = "group-meta";
+  groupMeta.textContent = `${group.tabs.length} tab${group.tabs.length === 1 ? "" : "s"}`;
+  title.append(groupUrl, groupMeta);
+
+  const actions = document.createElement("div");
+  actions.className = "group-actions";
+
+  const closeSelected = document.createElement("button");
+  closeSelected.type = "button";
+  closeSelected.className = selectedInGroup.length ? "danger" : "";
+  closeSelected.textContent = selectedInGroup.length ? `Close ${selectedInGroup.length}` : "Close all";
+  closeSelected.addEventListener("click", () => {
+    closeTabs(selectedInGroup.length ? selectedInGroup : group.tabs);
+  });
+
+  const closeButOne = document.createElement("button");
+  closeButOne.type = "button";
+  closeButOne.textContent = "Close all but 1";
+  closeButOne.disabled = group.tabs.length < 2;
+  closeButOne.addEventListener("click", () => {
+    closeTabs(getTabsExceptKeeper(group.tabs));
+  });
+
+  actions.append(closeSelected, closeButOne);
+  header.append(title, actions);
+
+  const list = document.createElement("div");
+  list.className = "tabs";
+  list.append(...group.tabs.map(renderTabRow));
+
+  groupEl.append(header, list);
+  return groupEl;
+}
+
+function renderTabRow(tab) {
+  const row = document.createElement("div");
+  row.className = "tab-row";
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.checked = state.selected.has(tab.id);
+  checkbox.setAttribute("aria-label", `Select ${tab.title || getTabUrl(tab) || "tab"}`);
+  checkbox.addEventListener("change", () => {
+    if (checkbox.checked) {
+      state.selected.add(tab.id);
+    } else {
+      state.selected.delete(tab.id);
+    }
+    render();
+  });
+
+  const jump = document.createElement("button");
+  jump.type = "button";
+  jump.className = "tab-jump";
+  jump.title = "Go to this tab";
+  jump.addEventListener("click", () => activateTab(tab));
+
+  const tabTitle = document.createElement("span");
+  tabTitle.className = "tab-title";
+  tabTitle.textContent = tab.title || "(Untitled)";
+
+  const tabUrl = document.createElement("span");
+  tabUrl.className = "tab-url";
+  tabUrl.textContent = getTabUrl(tab);
+
+  jump.append(tabTitle, tabUrl);
+
+  const ages = document.createElement("div");
+  ages.className = "tab-ages";
+  const opened = document.createElement("span");
+  opened.textContent = `Opened ${formatAge(getOpenedAt(tab))}`;
+  const viewed = document.createElement("span");
+  viewed.textContent = `Viewed ${formatAge(getLastViewedAt(tab))}`;
+  ages.append(opened, viewed);
+
+  row.append(checkbox, jump, ages);
+  return row;
+}
+
+async function closeTabs(tabs) {
+  const tabIds = tabs.map((tab) => tab.id).filter(Boolean);
+  if (!tabIds.length) {
+    return;
+  }
+
+  try {
+    await chrome.tabs.remove(tabIds);
+  } catch (error) {
+    setContentStatus(`Could not close all selected tabs. ${error?.message || "Chrome rejected the request."}`);
+  }
+
+  for (const id of tabIds) {
+    state.selected.delete(id);
+  }
+  await refreshTabs({ preserveContentSearch: true });
+}
+
+async function activateTab(tab) {
+  try {
+    await chrome.windows.update(tab.windowId, { focused: true });
+    await chrome.tabs.update(tab.id, { active: true });
+    window.close();
+  } catch (error) {
+    setContentStatus(`Could not activate that tab. ${error?.message || "Chrome rejected the request."}`);
+  }
+}
+
+async function runContentSearch() {
+  const runId = state.contentSearchRunId + 1;
+  state.contentSearchRunId = runId;
+  const query = els.contentSearch.value.trim();
+  state.contentQuery = query;
+  state.contentMatches = null;
+
+  if (!query) {
+    state.statusMessage = "";
+    setContentSearchBusy(false);
+    render();
+    return;
+  }
+
+  setContentSearchBusy(true);
+  const hasAccess = await ensurePageContentAccess();
+  if (runId !== state.contentSearchRunId) {
+    return;
+  }
+  if (!hasAccess) {
+    setContentSearchBusy(false);
+    setContentStatus("Page-text search needs site access. Use Chrome's extension site access menu and allow CleanTabs on all sites.");
+    render();
+    return;
+  }
+
+  setContentStatus(`Searching page text for "${query}"...`);
+  const queryLower = query.toLowerCase();
+  const searchableTabs = state.tabs.slice();
+  const results = await mapWithConcurrency(searchableTabs, CONTENT_SEARCH_CONCURRENCY, (tab) => searchTabContent(tab, queryLower));
+  if (runId !== state.contentSearchRunId) {
+    return;
+  }
+
+  const matchedIds = results.filter((result) => result.matched).map((result) => result.tabId);
+  const skippedCount = results.filter((result) => result.reason === "not-scriptable").length;
+  const failedResults = results.filter((result) => result.failed && result.reason !== "not-scriptable");
+
+  state.contentMatches = new Set(matchedIds);
+  setContentSearchBusy(false);
+  setContentStatus(formatContentSearchStatus(matchedIds.length, skippedCount, failedResults));
+  render();
+}
+
+async function ensurePageContentAccess() {
+  const permissions = { origins: ["<all_urls>"] };
+  try {
+    const alreadyGranted = await chrome.permissions.contains(permissions);
+    if (alreadyGranted) {
+      return true;
+    }
+    return await chrome.permissions.request(permissions);
+  } catch (_error) {
+    return false;
+  }
+}
+
+async function searchTabContent(tab, queryLower) {
+  if (!tab.id || !isScriptableUrl(getTabUrl(tab))) {
+    return { tabId: tab.id, matched: false, failed: true, reason: "not-scriptable" };
+  }
+
+  try {
+    const [result] = await chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      func: (needle) => {
+        const root = document.body || document.documentElement;
+        if (!root) {
+          return false;
+        }
+
+        const ignoredTags = new Set(["SCRIPT", "STYLE", "NOSCRIPT", "TEMPLATE"]);
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+          acceptNode(node) {
+            const parent = node.parentElement;
+            if (!parent || ignoredTags.has(parent.tagName)) {
+              return NodeFilter.FILTER_REJECT;
+            }
+            return node.nodeValue.trim()
+              ? NodeFilter.FILTER_ACCEPT
+              : NodeFilter.FILTER_REJECT;
+          }
+        });
+
+        for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+          if (node.nodeValue.toLowerCase().includes(needle)) {
+            return true;
+          }
+        }
+        return false;
+      },
+      args: [queryLower]
+    });
+    return { tabId: tab.id, matched: Boolean(result?.result), failed: false };
+  } catch (error) {
+    return {
+      tabId: tab.id,
+      matched: false,
+      failed: true,
+      reason: error?.message || "blocked"
+    };
+  }
+}
+
+function formatContentSearchStatus(matchedCount, skippedCount, failedResults) {
+  const parts = [`${matchedCount} tabs matched page text.`];
+  if (skippedCount) {
+    parts.push(`${skippedCount} browser/internal tabs skipped.`);
+  }
+  if (failedResults.length) {
+    const sample = failedResults[0].reason;
+    parts.push(`${failedResults.length} searchable-looking tabs failed. First error: ${sample}`);
+  }
+  return parts.join(" ");
+}
+
+function renderContentStatus() {
+  if (!state.statusMessage) {
+    els.contentStatus.hidden = true;
+    els.contentStatus.textContent = "";
+    return;
+  }
+  els.contentStatus.hidden = false;
+  els.contentStatus.textContent = state.statusMessage;
+}
+
+function setContentStatus(text) {
+  state.statusMessage = text;
+  els.contentStatus.hidden = false;
+  els.contentStatus.textContent = text;
+}
+
+function setContentSearchBusy(isBusy) {
+  els.contentSearchButton.disabled = isBusy;
+  els.contentSearchButton.textContent = isBusy ? "Searching" : "Search";
+}
+
+async function mapWithConcurrency(items, concurrency, mapper) {
+  const results = new Array(items.length);
+  let nextIndex = 0;
+
+  async function worker() {
+    while (nextIndex < items.length) {
+      const index = nextIndex;
+      nextIndex += 1;
+      results[index] = await mapper(items[index]);
+    }
+  }
+
+  const workerCount = Math.min(concurrency, items.length);
+  await Promise.all(Array.from({ length: workerCount }, worker));
+  return results;
+}
+
+function removeMissingSelections() {
+  const currentTabIds = new Set(state.tabs.map((tab) => tab.id));
+  state.selected = new Set([...state.selected].filter((id) => currentTabIds.has(id)));
+}
+
+function normalizeUrl(url) {
+  if (!url) {
+    return "(No URL)";
+  }
+  try {
+    const parsed = new URL(url);
+    parsed.hash = "";
+    return parsed.toString();
+  } catch (_error) {
+    return url;
+  }
+}
+
+function isNewTab(tab) {
+  const url = getTabUrl(tab);
+  return NEW_TAB_URLS.has(url) || url.startsWith("chrome://newtab") || url.startsWith("edge://newtab");
+}
+
+function isScriptableUrl(url = "") {
+  return /^https?:\/\//i.test(url) || /^file:\/\//i.test(url);
+}
+
+function getTabUrl(tab) {
+  return tab.url || tab.pendingUrl || "";
+}
+
+function getTabsExceptKeeper(tabs) {
+  const keeper = tabs.find((tab) => tab.active) || tabs[0];
+  return tabs.filter((tab) => tab.id !== keeper.id);
+}
+
+function getOpenedAt(tab) {
+  return state.tabMeta[String(tab.id)]?.openedAt || Date.now();
+}
+
+function getLastViewedAt(tab) {
+  return tab.lastAccessed || state.tabMeta[String(tab.id)]?.lastViewedAt || getOpenedAt(tab);
+}
+
+function formatAge(timestamp) {
+  if (!timestamp) {
+    return "unknown";
+  }
+
+  const elapsed = Math.max(0, Date.now() - timestamp);
+  const minute = 60 * 1000;
+  const hour = 60 * minute;
+  const day = 24 * hour;
+
+  if (elapsed < minute) {
+    return "just now";
+  }
+  if (elapsed < hour) {
+    return `${Math.floor(elapsed / minute)}m ago`;
+  }
+  if (elapsed < day) {
+    return `${Math.floor(elapsed / hour)}h ago`;
+  }
+  return `${Math.floor(elapsed / day)}d ago`;
+}

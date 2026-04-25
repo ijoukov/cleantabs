@@ -5,6 +5,7 @@ const NEW_TAB_URLS = new Set([
   "about:newtab"
 ]);
 const CONTENT_SEARCH_CONCURRENCY = 4;
+const tabApi = globalThis.cleanTabsPreviewApi || chrome;
 
 const state = {
   tabs: [],
@@ -92,8 +93,8 @@ function bindEvents() {
 
 async function refreshTabs({ preserveContentSearch = true } = {}) {
   const [tabs, metaResponse] = await Promise.all([
-    chrome.tabs.query({}),
-    chrome.runtime.sendMessage({ type: "getTabMeta" }).catch(() => ({ tabMeta: {} }))
+    tabApi.tabs.query({}),
+    tabApi.runtime.sendMessage({ type: "getTabMeta" }).catch(() => ({ tabMeta: {} }))
   ]);
 
   if (!preserveContentSearch) {
@@ -188,8 +189,9 @@ function hasActiveResultFilter() {
 
 function renderGroup(group) {
   const selectedInGroup = group.tabs.filter((tab) => state.selected.has(tab.id));
+  const isDuplicateGroup = group.tabs.length > 1;
   const groupEl = document.createElement("article");
-  groupEl.className = "group";
+  groupEl.className = isDuplicateGroup ? "group duplicate-group" : "group single-group";
 
   const header = document.createElement("header");
   header.className = "group-header";
@@ -201,7 +203,9 @@ function renderGroup(group) {
   groupUrl.textContent = group.url;
   const groupMeta = document.createElement("span");
   groupMeta.className = "group-meta";
-  groupMeta.textContent = `${group.tabs.length} tab${group.tabs.length === 1 ? "" : "s"}`;
+  groupMeta.textContent = isDuplicateGroup
+    ? `${group.tabs.length} tabs - duplicate URL`
+    : "1 tab";
   title.append(groupUrl, groupMeta);
 
   const actions = document.createElement("div");
@@ -210,20 +214,22 @@ function renderGroup(group) {
   const closeSelected = document.createElement("button");
   closeSelected.type = "button";
   closeSelected.className = selectedInGroup.length ? "danger" : "";
-  closeSelected.textContent = selectedInGroup.length ? `Close ${selectedInGroup.length}` : "Close all";
+  closeSelected.textContent = getPrimaryCloseLabel(group.tabs.length, selectedInGroup.length);
   closeSelected.addEventListener("click", () => {
     closeTabs(selectedInGroup.length ? selectedInGroup : group.tabs);
   });
 
-  const closeButOne = document.createElement("button");
-  closeButOne.type = "button";
-  closeButOne.textContent = "Close all but 1";
-  closeButOne.disabled = group.tabs.length < 2;
-  closeButOne.addEventListener("click", () => {
-    closeTabs(getTabsExceptKeeper(group.tabs));
-  });
-
-  actions.append(closeSelected, closeButOne);
+  actions.append(closeSelected);
+  if (isDuplicateGroup) {
+    const closeButOne = document.createElement("button");
+    closeButOne.type = "button";
+    closeButOne.textContent = "Keep 1";
+    closeButOne.title = "Close all but one tab in this group";
+    closeButOne.addEventListener("click", () => {
+      closeTabs(getTabsExceptKeeper(group.tabs));
+    });
+    actions.append(closeButOne);
+  }
   header.append(title, actions);
 
   const list = document.createElement("div");
@@ -236,7 +242,7 @@ function renderGroup(group) {
 
 function renderTabRow(tab) {
   const row = document.createElement("div");
-  row.className = "tab-row";
+  row.className = state.selected.has(tab.id) ? "tab-row selected-tab" : "tab-row";
 
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
@@ -250,6 +256,8 @@ function renderTabRow(tab) {
     }
     render();
   });
+
+  const icon = renderTabIcon(tab);
 
   const jump = document.createElement("button");
   jump.type = "button";
@@ -275,8 +283,29 @@ function renderTabRow(tab) {
   viewed.textContent = `Viewed ${formatAge(getLastViewedAt(tab))}`;
   ages.append(opened, viewed);
 
-  row.append(checkbox, jump, ages);
+  row.append(checkbox, icon, jump, ages);
   return row;
+}
+
+function renderTabIcon(tab) {
+  const icon = document.createElement("span");
+  icon.className = "tab-icon";
+  icon.textContent = getTabInitial(tab);
+
+  if (tab.favIconUrl && isScriptableIconUrl(tab.favIconUrl)) {
+    const image = document.createElement("img");
+    image.src = tab.favIconUrl;
+    image.alt = "";
+    image.addEventListener("load", () => {
+      icon.replaceChildren(image);
+      icon.classList.add("has-image");
+    });
+    image.addEventListener("error", () => {
+      icon.classList.remove("has-image");
+    });
+  }
+
+  return icon;
 }
 
 async function closeTabs(tabs) {
@@ -286,7 +315,7 @@ async function closeTabs(tabs) {
   }
 
   try {
-    await chrome.tabs.remove(tabIds);
+    await tabApi.tabs.remove(tabIds);
   } catch (error) {
     setContentStatus(`Could not close all selected tabs. ${error?.message || "Chrome rejected the request."}`);
   }
@@ -299,8 +328,8 @@ async function closeTabs(tabs) {
 
 async function activateTab(tab) {
   try {
-    await chrome.windows.update(tab.windowId, { focused: true });
-    await chrome.tabs.update(tab.id, { active: true });
+    await tabApi.windows.update(tab.windowId, { focused: true });
+    await tabApi.tabs.update(tab.id, { active: true });
     window.close();
   } catch (error) {
     setContentStatus(`Could not activate that tab. ${error?.message || "Chrome rejected the request."}`);
@@ -354,11 +383,11 @@ async function runContentSearch() {
 async function ensurePageContentAccess() {
   const permissions = { origins: ["<all_urls>"] };
   try {
-    const alreadyGranted = await chrome.permissions.contains(permissions);
+    const alreadyGranted = await tabApi.permissions.contains(permissions);
     if (alreadyGranted) {
       return true;
     }
-    return await chrome.permissions.request(permissions);
+    return await tabApi.permissions.request(permissions);
   } catch (_error) {
     return false;
   }
@@ -370,7 +399,7 @@ async function searchTabContent(tab, queryLower) {
   }
 
   try {
-    const [result] = await chrome.scripting.executeScript({
+    const [result] = await tabApi.scripting.executeScript({
       target: { tabId: tab.id },
       func: (needle) => {
         const root = document.body || document.documentElement;
@@ -490,6 +519,31 @@ function isScriptableUrl(url = "") {
 
 function getTabUrl(tab) {
   return tab.url || tab.pendingUrl || "";
+}
+
+function isScriptableIconUrl(url = "") {
+  return /^https?:\/\//i.test(url) || /^data:image\//i.test(url);
+}
+
+function getTabInitial(tab) {
+  const host = getTabHost(tab);
+  const source = host || tab.title || "?";
+  return source.trim().charAt(0).toUpperCase() || "?";
+}
+
+function getTabHost(tab) {
+  try {
+    return new URL(getTabUrl(tab)).hostname.replace(/^www\./, "");
+  } catch (_error) {
+    return "";
+  }
+}
+
+function getPrimaryCloseLabel(groupSize, selectedCount) {
+  if (selectedCount) {
+    return `Close ${selectedCount}`;
+  }
+  return groupSize === 1 ? "Close tab" : "Close all";
 }
 
 function getTabsExceptKeeper(tabs) {

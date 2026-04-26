@@ -1,0 +1,143 @@
+{
+  "appName": {
+    "message": "CleanTabs"
+  },
+  "appDescription": {
+    "message": "Trouvez les onglets Chrome dupliqués, anciens, nouveaux ou correspondants, puis fermez-les ou ouvrez-les rapidement."
+  },
+  "loadingTabs": {
+    "message": "Chargement des onglets..."
+  },
+  "refresh": {
+    "message": "Actualiser"
+  },
+  "tabFiltersLabel": {
+    "message": "Filtres d'onglets"
+  },
+  "urlOrTitleLabel": {
+    "message": "URL ou titre"
+  },
+  "searchUrlOrTitlePlaceholder": {
+    "message": "Rechercher une URL ou un titre"
+  },
+  "pageTextLabel": {
+    "message": "Texte de page"
+  },
+  "searchLoadedPageTextPlaceholder": {
+    "message": "Rechercher dans le texte chargé"
+  },
+  "search": {
+    "message": "Rechercher"
+  },
+  "searching": {
+    "message": "Recherche"
+  },
+  "newTabs": {
+    "message": "Nouveaux onglets"
+  },
+  "clear": {
+    "message": "Effacer"
+  },
+  "selectResults": {
+    "message": "Sélectionner les résultats"
+  },
+  "clearSelection": {
+    "message": "Effacer la sélection"
+  },
+  "closeResults": {
+    "message": "Fermer les résultats"
+  },
+  "noMatchingTabs": {
+    "message": "Aucun onglet correspondant."
+  },
+  "summary": {
+    "message": "{0} onglets, {1} groupes d'URL dupliquées"
+  },
+  "visibleResults": {
+    "message": "{0} résultats visibles"
+  },
+  "visibleResultsSelected": {
+    "message": "{0} résultats visibles, {1} sélectionnés"
+  },
+  "selectCount": {
+    "message": "Sélectionner {0}"
+  },
+  "closeSelectedCount": {
+    "message": "Fermer {0} sélectionnés"
+  },
+  "closeMatchingCount": {
+    "message": "Fermer {0} correspondants"
+  },
+  "closeCount": {
+    "message": "Fermer {0}"
+  },
+  "closeAll": {
+    "message": "Tout fermer"
+  },
+  "closeTab": {
+    "message": "Fermer l'onglet"
+  },
+  "keepOne": {
+    "message": "Garder 1"
+  },
+  "keepOneTitle": {
+    "message": "Fermer tous les onglets de ce groupe sauf un"
+  },
+  "tabsDuplicateUrl": {
+    "message": "{0} onglets - URL dupliquée"
+  },
+  "oneTab": {
+    "message": "1 onglet"
+  },
+  "selectTab": {
+    "message": "Sélectionner {0}"
+  },
+  "goToTab": {
+    "message": "Aller à cet onglet"
+  },
+  "untitled": {
+    "message": "(Sans titre)"
+  },
+  "viewedAge": {
+    "message": "Vu {0}"
+  },
+  "couldNotCloseTabs": {
+    "message": "Impossible de fermer tous les onglets sélectionnés. {0}"
+  },
+  "chromeRejectedRequest": {
+    "message": "Chrome a refusé la demande."
+  },
+  "couldNotActivateTab": {
+    "message": "Impossible d'activer cet onglet. {0}"
+  },
+  "pageTextSearchNeedsAccess": {
+    "message": "La recherche dans le texte de page nécessite l'accès au site. Autorisez CleanTabs sur tous les sites dans le menu d'accès de l'extension."
+  },
+  "searchingPageText": {
+    "message": "Recherche dans le texte de page pour \"{0}\"..."
+  },
+  "contentSearchStatusMatches": {
+    "message": "{0} onglets correspondent au texte de page."
+  },
+  "contentSearchStatusSkipped": {
+    "message": "{0} onglets internes/du navigateur ignorés."
+  },
+  "contentSearchStatusFailed": {
+    "message": "{0} onglets apparemment recherchables ont échoué. Première erreur: {1}"
+  },
+  "noUrl": {
+    "message": "(Aucune URL)"
+  },
+  "justNow": {
+    "message": "à l'instant"
+  },
+  "minutesAgo": {
+    "message": "il y a {0} min"
+  },
+  "hoursAgo": {
+    "message": "il y a {0} h"
+  },
+  "daysAgo": {
+    "message": "il y a {0} j"
+  }
+}

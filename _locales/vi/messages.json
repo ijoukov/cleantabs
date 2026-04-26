@@ -1,0 +1,143 @@
+{
+  "appName": {
+    "message": "CleanTabs"
+  },
+  "appDescription": {
+    "message": "Tìm các thẻ Chrome trùng lặp, cũ, mới và phù hợp, rồi đóng hoặc chuyển đến chúng nhanh chóng."
+  },
+  "loadingTabs": {
+    "message": "Đang tải thẻ..."
+  },
+  "refresh": {
+    "message": "Làm mới"
+  },
+  "tabFiltersLabel": {
+    "message": "Bộ lọc thẻ"
+  },
+  "urlOrTitleLabel": {
+    "message": "URL hoặc tiêu đề"
+  },
+  "searchUrlOrTitlePlaceholder": {
+    "message": "Tìm URL hoặc tiêu đề"
+  },
+  "pageTextLabel": {
+    "message": "Văn bản trang"
+  },
+  "searchLoadedPageTextPlaceholder": {
+    "message": "Tìm văn bản trang đã tải"
+  },
+  "search": {
+    "message": "Tìm"
+  },
+  "searching": {
+    "message": "Đang tìm"
+  },
+  "newTabs": {
+    "message": "Thẻ mới"
+  },
+  "clear": {
+    "message": "Xóa"
+  },
+  "selectResults": {
+    "message": "Chọn kết quả"
+  },
+  "clearSelection": {
+    "message": "Xóa lựa chọn"
+  },
+  "closeResults": {
+    "message": "Đóng kết quả"
+  },
+  "noMatchingTabs": {
+    "message": "Không có thẻ phù hợp."
+  },
+  "summary": {
+    "message": "{0} thẻ, {1} nhóm URL trùng lặp"
+  },
+  "visibleResults": {
+    "message": "{0} kết quả hiển thị"
+  },
+  "visibleResultsSelected": {
+    "message": "{0} kết quả hiển thị, {1} đã chọn"
+  },
+  "selectCount": {
+    "message": "Chọn {0}"
+  },
+  "closeSelectedCount": {
+    "message": "Đóng {0} đã chọn"
+  },
+  "closeMatchingCount": {
+    "message": "Đóng {0} phù hợp"
+  },
+  "closeCount": {
+    "message": "Đóng {0}"
+  },
+  "closeAll": {
+    "message": "Đóng tất cả"
+  },
+  "closeTab": {
+    "message": "Đóng thẻ"
+  },
+  "keepOne": {
+    "message": "Giữ 1"
+  },
+  "keepOneTitle": {
+    "message": "Đóng tất cả trừ một thẻ trong nhóm này"
+  },
+  "tabsDuplicateUrl": {
+    "message": "{0} thẻ - URL trùng lặp"
+  },
+  "oneTab": {
+    "message": "1 thẻ"
+  },
+  "selectTab": {
+    "message": "Chọn {0}"
+  },
+  "goToTab": {
+    "message": "Đi tới thẻ này"
+  },
+  "untitled": {
+    "message": "(Không có tiêu đề)"
+  },
+  "viewedAge": {
+    "message": "Đã xem {0}"
+  },
+  "couldNotCloseTabs": {
+    "message": "Không thể đóng tất cả thẻ đã chọn. {0}"
+  },
+  "chromeRejectedRequest": {
+    "message": "Chrome đã từ chối yêu cầu."
+  },
+  "couldNotActivateTab": {
+    "message": "Không thể kích hoạt thẻ đó. {0}"
+  },
+  "pageTextSearchNeedsAccess": {
+    "message": "Tìm kiếm văn bản trang cần quyền truy cập trang web. Cho phép CleanTabs trên mọi trang trong menu truy cập trang web của tiện ích."
+  },
+  "searchingPageText": {
+    "message": "Đang tìm văn bản trang cho \"{0}\"..."
+  },
+  "contentSearchStatusMatches": {
+    "message": "{0} thẻ khớp với văn bản trang."
+  },
+  "contentSearchStatusSkipped": {
+    "message": "Đã bỏ qua {0} thẻ trình duyệt/nội bộ."
+  },
+  "contentSearchStatusFailed": {
+    "message": "{0} thẻ có vẻ tìm kiếm được đã lỗi. Lỗi đầu tiên: {1}"
+  },
+  "noUrl": {
+    "message": "(Không có URL)"
+  },
+  "justNow": {
+    "message": "vừa xong"
+  },
+  "minutesAgo": {
+    "message": "{0} phút trước"
+  },
+  "hoursAgo": {
+    "message": "{0} giờ trước"
+  },
+  "daysAgo": {
+    "message": "{0} ngày trước"
+  }
+}

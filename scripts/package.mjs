@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { deflateRawSync } from "node:zlib";
 
 const manifest = JSON.parse(readFileSync("manifest.json", "utf8"));
@@ -9,16 +9,23 @@ const files = [
   "popup.html",
   "popup.css",
   "popup.js",
-  "service_worker.js",
   "icons/icon16.png",
   "icons/icon32.png",
   "icons/icon48.png",
-  "icons/icon128.png"
+  "icons/icon128.png",
+  ...localeFiles()
 ];
 
 mkdirSync("dist", { recursive: true });
 writeFileSync(outputPath, createZip(files));
 console.log(`Wrote ${outputPath}`);
+
+function localeFiles() {
+  return readdirSync("_locales", { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => `_locales/${entry.name}/messages.json`)
+    .sort();
+}
 
 function createZip(paths) {
   const localParts = [];

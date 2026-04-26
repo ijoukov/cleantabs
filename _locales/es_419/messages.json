@@ -1,0 +1,143 @@
+{
+  "appName": {
+    "message": "CleanTabs"
+  },
+  "appDescription": {
+    "message": "Encuentra pestañas duplicadas, viejas, nuevas y coincidentes en Chrome, y ciérralas o ábrelas rápido."
+  },
+  "loadingTabs": {
+    "message": "Cargando pestañas..."
+  },
+  "refresh": {
+    "message": "Actualizar"
+  },
+  "tabFiltersLabel": {
+    "message": "Filtros de pestañas"
+  },
+  "urlOrTitleLabel": {
+    "message": "URL o título"
+  },
+  "searchUrlOrTitlePlaceholder": {
+    "message": "Buscar URL o título"
+  },
+  "pageTextLabel": {
+    "message": "Texto de la página"
+  },
+  "searchLoadedPageTextPlaceholder": {
+    "message": "Buscar texto cargado"
+  },
+  "search": {
+    "message": "Buscar"
+  },
+  "searching": {
+    "message": "Buscando"
+  },
+  "newTabs": {
+    "message": "Pestañas nuevas"
+  },
+  "clear": {
+    "message": "Limpiar"
+  },
+  "selectResults": {
+    "message": "Seleccionar resultados"
+  },
+  "clearSelection": {
+    "message": "Limpiar selección"
+  },
+  "closeResults": {
+    "message": "Cerrar resultados"
+  },
+  "noMatchingTabs": {
+    "message": "No hay pestañas que coincidan."
+  },
+  "summary": {
+    "message": "{0} pestañas, {1} grupos de URL duplicadas"
+  },
+  "visibleResults": {
+    "message": "{0} resultados visibles"
+  },
+  "visibleResultsSelected": {
+    "message": "{0} resultados visibles, {1} seleccionados"
+  },
+  "selectCount": {
+    "message": "Seleccionar {0}"
+  },
+  "closeSelectedCount": {
+    "message": "Cerrar {0} seleccionadas"
+  },
+  "closeMatchingCount": {
+    "message": "Cerrar {0} coincidencias"
+  },
+  "closeCount": {
+    "message": "Cerrar {0}"
+  },
+  "closeAll": {
+    "message": "Cerrar todo"
+  },
+  "closeTab": {
+    "message": "Cerrar pestaña"
+  },
+  "keepOne": {
+    "message": "Dejar 1"
+  },
+  "keepOneTitle": {
+    "message": "Cerrar todas menos una pestaña de este grupo"
+  },
+  "tabsDuplicateUrl": {
+    "message": "{0} pestañas - URL duplicada"
+  },
+  "oneTab": {
+    "message": "1 pestaña"
+  },
+  "selectTab": {
+    "message": "Seleccionar {0}"
+  },
+  "goToTab": {
+    "message": "Ir a esta pestaña"
+  },
+  "untitled": {
+    "message": "(Sin título)"
+  },
+  "viewedAge": {
+    "message": "Vista {0}"
+  },
+  "couldNotCloseTabs": {
+    "message": "No se pudieron cerrar todas las pestañas seleccionadas. {0}"
+  },
+  "chromeRejectedRequest": {
+    "message": "Chrome rechazó la solicitud."
+  },
+  "couldNotActivateTab": {
+    "message": "No se pudo activar esa pestaña. {0}"
+  },
+  "pageTextSearchNeedsAccess": {
+    "message": "La búsqueda en texto de página necesita acceso al sitio. Permite CleanTabs en todos los sitios desde el menú de acceso de la extensión."
+  },
+  "searchingPageText": {
+    "message": "Buscando texto de página para \"{0}\"..."
+  },
+  "contentSearchStatusMatches": {
+    "message": "{0} pestañas coincidieron con el texto de página."
+  },
+  "contentSearchStatusSkipped": {
+    "message": "{0} pestañas del navegador/internas omitidas."
+  },
+  "contentSearchStatusFailed": {
+    "message": "{0} pestañas que parecían buscables fallaron. Primer error: {1}"
+  },
+  "noUrl": {
+    "message": "(Sin URL)"
+  },
+  "justNow": {
+    "message": "ahora"
+  },
+  "minutesAgo": {
+    "message": "hace {0} min"
+  },
+  "hoursAgo": {
+    "message": "hace {0} h"
+  },
+  "daysAgo": {
+    "message": "hace {0} d"
+  }
+}

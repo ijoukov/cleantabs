@@ -18,7 +18,7 @@ CleanTabs is a local Chrome extension for tab cleanup.
 - Group actions to close all tabs, close all but one, or close selected tabs.
 - Per-tab checkboxes; once selected, the group close button changes to `Close X`.
 - Click any tab result to focus its window and activate that tab.
-- Shows approximate opened age and last viewed age.
+- Shows approximate last viewed age.
 - Page-text search across scriptable tabs.
 
 ## Development
@@ -41,7 +41,5 @@ npm run package
 6. Use `PRIVACY.md` for the privacy policy content.
 
 ## Notes
-
-Chrome does not expose the true original open time for tabs that already existed before the extension was installed or the browser session started. CleanTabs starts tracking open time after installation/startup, so those existing tabs are approximate.
 
 Page-text search requires `scripting` and `<all_urls>` permissions. Chrome blocks scripted access to some pages, including internal browser pages and Chrome Web Store pages, so those tabs are counted as unsearchable.

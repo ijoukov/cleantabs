@@ -1,0 +1,143 @@
+{
+  "appName": {
+    "message": "CleanTabs"
+  },
+  "appDescription": {
+    "message": "Znajduj zduplikowane, stare, nowe i pasujące karty Chrome, a potem szybko je zamykaj lub otwieraj."
+  },
+  "loadingTabs": {
+    "message": "Wczytywanie kart..."
+  },
+  "refresh": {
+    "message": "Odśwież"
+  },
+  "tabFiltersLabel": {
+    "message": "Filtry kart"
+  },
+  "urlOrTitleLabel": {
+    "message": "URL lub tytuł"
+  },
+  "searchUrlOrTitlePlaceholder": {
+    "message": "Szukaj URL lub tytułu"
+  },
+  "pageTextLabel": {
+    "message": "Tekst strony"
+  },
+  "searchLoadedPageTextPlaceholder": {
+    "message": "Szukaj w załadowanym tekście strony"
+  },
+  "search": {
+    "message": "Szukaj"
+  },
+  "searching": {
+    "message": "Szukam"
+  },
+  "newTabs": {
+    "message": "Nowe karty"
+  },
+  "clear": {
+    "message": "Wyczyść"
+  },
+  "selectResults": {
+    "message": "Zaznacz wyniki"
+  },
+  "clearSelection": {
+    "message": "Wyczyść zaznaczenie"
+  },
+  "closeResults": {
+    "message": "Zamknij wyniki"
+  },
+  "noMatchingTabs": {
+    "message": "Brak pasujących kart."
+  },
+  "summary": {
+    "message": "{0} kart, {1} grup zduplikowanych URL"
+  },
+  "visibleResults": {
+    "message": "{0} widocznych wyników"
+  },
+  "visibleResultsSelected": {
+    "message": "{0} widocznych wyników, zaznaczono {1}"
+  },
+  "selectCount": {
+    "message": "Zaznacz {0}"
+  },
+  "closeSelectedCount": {
+    "message": "Zamknij zaznaczone: {0}"
+  },
+  "closeMatchingCount": {
+    "message": "Zamknij pasujące: {0}"
+  },
+  "closeCount": {
+    "message": "Zamknij {0}"
+  },
+  "closeAll": {
+    "message": "Zamknij wszystko"
+  },
+  "closeTab": {
+    "message": "Zamknij kartę"
+  },
+  "keepOne": {
+    "message": "Zostaw 1"
+  },
+  "keepOneTitle": {
+    "message": "Zamknij wszystkie karty w tej grupie poza jedną"
+  },
+  "tabsDuplicateUrl": {
+    "message": "{0} kart - zduplikowany URL"
+  },
+  "oneTab": {
+    "message": "1 karta"
+  },
+  "selectTab": {
+    "message": "Zaznacz {0}"
+  },
+  "goToTab": {
+    "message": "Przejdź do tej karty"
+  },
+  "untitled": {
+    "message": "(Bez tytułu)"
+  },
+  "viewedAge": {
+    "message": "Wyświetlono {0}"
+  },
+  "couldNotCloseTabs": {
+    "message": "Nie udało się zamknąć wszystkich zaznaczonych kart. {0}"
+  },
+  "chromeRejectedRequest": {
+    "message": "Chrome odrzucił żądanie."
+  },
+  "couldNotActivateTab": {
+    "message": "Nie udało się aktywować tej karty. {0}"
+  },
+  "pageTextSearchNeedsAccess": {
+    "message": "Wyszukiwanie tekstu strony wymaga dostępu do witryny. Zezwól CleanTabs na wszystkich witrynach w menu dostępu rozszerzenia."
+  },
+  "searchingPageText": {
+    "message": "Szukam tekstu strony dla \"{0}\"..."
+  },
+  "contentSearchStatusMatches": {
+    "message": "{0} kart pasuje do tekstu strony."
+  },
+  "contentSearchStatusSkipped": {
+    "message": "Pominięto {0} kart przeglądarki/wewnętrznych."
+  },
+  "contentSearchStatusFailed": {
+    "message": "Nie powiodło się dla {0} kart wyglądających na możliwe do przeszukania. Pierwszy błąd: {1}"
+  },
+  "noUrl": {
+    "message": "(Brak URL)"
+  },
+  "justNow": {
+    "message": "teraz"
+  },
+  "minutesAgo": {
+    "message": "{0} min temu"
+  },
+  "hoursAgo": {
+    "message": "{0} godz. temu"
+  },
+  "daysAgo": {
+    "message": "{0} dni temu"
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "appName": {
+    "message": "CleanTabs"
+  },
+  "appDescription": {
+    "message": "Находите дубликаты, старые, новые и совпадающие вкладки Chrome, затем быстро закрывайте их или переходите к ним."
+  },
+  "loadingTabs": {
+    "message": "Загрузка вкладок..."
+  },
+  "refresh": {
+    "message": "Обновить"
+  },
+  "tabFiltersLabel": {
+    "message": "Фильтры вкладок"
+  },
+  "urlOrTitleLabel": {
+    "message": "URL или заголовок"
+  },
+  "searchUrlOrTitlePlaceholder": {
+    "message": "Искать URL или заголовок"
+  },
+  "pageTextLabel": {
+    "message": "Текст страницы"
+  },
+  "searchLoadedPageTextPlaceholder": {
+    "message": "Искать в загруженном тексте страницы"
+  },
+  "search": {
+    "message": "Искать"
+  },
+  "searching": {
+    "message": "Поиск"
+  },
+  "newTabs": {
+    "message": "Новые вкладки"
+  },
+  "clear": {
+    "message": "Очистить"
+  },
+  "selectResults": {
+    "message": "Выбрать результаты"
+  },
+  "clearSelection": {
+    "message": "Очистить выбор"
+  },
+  "closeResults": {
+    "message": "Закрыть результаты"
+  },
+  "noMatchingTabs": {
+    "message": "Нет подходящих вкладок."
+  },
+  "summary": {
+    "message": "{0} вкладок, {1} групп с дубликатами URL"
+  },
+  "visibleResults": {
+    "message": "{0} видимых результатов"
+  },
+  "visibleResultsSelected": {
+    "message": "{0} видимых результатов, выбрано {1}"
+  },
+  "selectCount": {
+    "message": "Выбрать {0}"
+  },
+  "closeSelectedCount": {
+    "message": "Закрыть выбранные: {0}"
+  },
+  "closeMatchingCount": {
+    "message": "Закрыть совпадающие: {0}"
+  },
+  "closeCount": {
+    "message": "Закрыть {0}"
+  },
+  "closeAll": {
+    "message": "Закрыть все"
+  },
+  "closeTab": {
+    "message": "Закрыть вкладку"
+  },
+  "keepOne": {
+    "message": "Оставить 1"
+  },
+  "keepOneTitle": {
+    "message": "Закрыть все вкладки в этой группе, кроме одной"
+  },
+  "tabsDuplicateUrl": {
+    "message": "{0} вкладок - дубликат URL"
+  },
+  "oneTab": {
+    "message": "1 вкладка"
+  },
+  "selectTab": {
+    "message": "Выбрать {0}"
+  },
+  "goToTab": {
+    "message": "Перейти к этой вкладке"
+  },
+  "untitled": {
+    "message": "(Без названия)"
+  },
+  "viewedAge": {
+    "message": "Просмотрена {0}"
+  },
+  "couldNotCloseTabs": {
+    "message": "Не удалось закрыть все выбранные вкладки. {0}"
+  },
+  "chromeRejectedRequest": {
+    "message": "Chrome отклонил запрос."
+  },
+  "couldNotActivateTab": {
+    "message": "Не удалось активировать эту вкладку. {0}"
+  },
+  "pageTextSearchNeedsAccess": {
+    "message": "Для поиска по тексту страницы нужен доступ к сайту. Разрешите CleanTabs на всех сайтах в меню доступа расширения."
+  },
+  "searchingPageText": {
+    "message": "Поиск текста страницы для \"{0}\"..."
+  },
+  "contentSearchStatusMatches": {
+    "message": "{0} вкладок совпали с текстом страницы."
+  },
+  "contentSearchStatusSkipped": {
+    "message": "Пропущено {0} браузерных/внутренних вкладок."
+  },
+  "contentSearchStatusFailed": {
+    "message": "Не удалось обработать {0} вкладок, которые выглядели доступными для поиска. Первая ошибка: {1}"
+  },
+  "noUrl": {
+    "message": "(Нет URL)"
+  },
+  "justNow": {
+    "message": "только что"
+  },
+  "minutesAgo": {
+    "message": "{0} мин назад"
+  },
+  "hoursAgo": {
+    "message": "{0} ч назад"
+  },
+  "daysAgo": {
+    "message": "{0} дн назад"
+  }
+}

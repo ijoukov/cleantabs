@@ -1,0 +1,143 @@
+{
+  "appName": {
+    "message": "CleanTabs"
+  },
+  "appDescription": {
+    "message": "Знаходьте дублікати, старі, нові та відповідні вкладки Chrome, а потім швидко закривайте або відкривайте їх."
+  },
+  "loadingTabs": {
+    "message": "Завантаження вкладок..."
+  },
+  "refresh": {
+    "message": "Оновити"
+  },
+  "tabFiltersLabel": {
+    "message": "Фільтри вкладок"
+  },
+  "urlOrTitleLabel": {
+    "message": "URL або заголовок"
+  },
+  "searchUrlOrTitlePlaceholder": {
+    "message": "Шукати URL або заголовок"
+  },
+  "pageTextLabel": {
+    "message": "Текст сторінки"
+  },
+  "searchLoadedPageTextPlaceholder": {
+    "message": "Шукати в завантаженому тексті сторінки"
+  },
+  "search": {
+    "message": "Шукати"
+  },
+  "searching": {
+    "message": "Пошук"
+  },
+  "newTabs": {
+    "message": "Нові вкладки"
+  },
+  "clear": {
+    "message": "Очистити"
+  },
+  "selectResults": {
+    "message": "Вибрати результати"
+  },
+  "clearSelection": {
+    "message": "Очистити вибір"
+  },
+  "closeResults": {
+    "message": "Закрити результати"
+  },
+  "noMatchingTabs": {
+    "message": "Немає відповідних вкладок."
+  },
+  "summary": {
+    "message": "{0} вкладок, {1} груп дублікатів URL"
+  },
+  "visibleResults": {
+    "message": "{0} видимих результатів"
+  },
+  "visibleResultsSelected": {
+    "message": "{0} видимих результатів, вибрано {1}"
+  },
+  "selectCount": {
+    "message": "Вибрати {0}"
+  },
+  "closeSelectedCount": {
+    "message": "Закрити вибрані: {0}"
+  },
+  "closeMatchingCount": {
+    "message": "Закрити відповідні: {0}"
+  },
+  "closeCount": {
+    "message": "Закрити {0}"
+  },
+  "closeAll": {
+    "message": "Закрити все"
+  },
+  "closeTab": {
+    "message": "Закрити вкладку"
+  },
+  "keepOne": {
+    "message": "Залишити 1"
+  },
+  "keepOneTitle": {
+    "message": "Закрити всі вкладки в цій групі, крім однієї"
+  },
+  "tabsDuplicateUrl": {
+    "message": "{0} вкладок - дублікат URL"
+  },
+  "oneTab": {
+    "message": "1 вкладка"
+  },
+  "selectTab": {
+    "message": "Вибрати {0}"
+  },
+  "goToTab": {
+    "message": "Перейти до цієї вкладки"
+  },
+  "untitled": {
+    "message": "(Без назви)"
+  },
+  "viewedAge": {
+    "message": "Переглянуто {0}"
+  },
+  "couldNotCloseTabs": {
+    "message": "Не вдалося закрити всі вибрані вкладки. {0}"
+  },
+  "chromeRejectedRequest": {
+    "message": "Chrome відхилив запит."
+  },
+  "couldNotActivateTab": {
+    "message": "Не вдалося активувати цю вкладку. {0}"
+  },
+  "pageTextSearchNeedsAccess": {
+    "message": "Пошук у тексті сторінки потребує доступу до сайту. Дозвольте CleanTabs на всіх сайтах у меню доступу розширення."
+  },
+  "searchingPageText": {
+    "message": "Пошук тексту сторінки для \"{0}\"..."
+  },
+  "contentSearchStatusMatches": {
+    "message": "{0} вкладок відповідають тексту сторінки."
+  },
+  "contentSearchStatusSkipped": {
+    "message": "Пропущено {0} браузерних/внутрішніх вкладок."
+  },
+  "contentSearchStatusFailed": {
+    "message": "Не вдалося обробити {0} вкладок, які мали бути доступні для пошуку. Перша помилка: {1}"
+  },
+  "noUrl": {
+    "message": "(Немає URL)"
+  },
+  "justNow": {
+    "message": "щойно"
+  },
+  "minutesAgo": {
+    "message": "{0} хв тому"
+  },
+  "hoursAgo": {
+    "message": "{0} год тому"
+  },
+  "daysAgo": {
+    "message": "{0} дн тому"
+  }
+}

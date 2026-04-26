@@ -1,0 +1,164 @@
+{
+  "appName": {
+    "message": "CleanTabs",
+    "description": "Extension name."
+  },
+  "appDescription": {
+    "message": "Find duplicate, stale, new, and matching Chrome tabs, then close or jump to them quickly.",
+    "description": "Extension description shown in Chrome and the Chrome Web Store."
+  },
+  "loadingTabs": {
+    "message": "Loading tabs..."
+  },
+  "refresh": {
+    "message": "Refresh"
+  },
+  "tabFiltersLabel": {
+    "message": "Tab filters"
+  },
+  "urlOrTitleLabel": {
+    "message": "URL or title"
+  },
+  "searchUrlOrTitlePlaceholder": {
+    "message": "Search URL or title"
+  },
+  "pageTextLabel": {
+    "message": "Page text"
+  },
+  "searchLoadedPageTextPlaceholder": {
+    "message": "Search loaded page text"
+  },
+  "search": {
+    "message": "Search"
+  },
+  "searching": {
+    "message": "Searching"
+  },
+  "newTabs": {
+    "message": "New tabs"
+  },
+  "clear": {
+    "message": "Clear"
+  },
+  "selectResults": {
+    "message": "Select results"
+  },
+  "clearSelection": {
+    "message": "Clear selection"
+  },
+  "closeResults": {
+    "message": "Close results"
+  },
+  "noMatchingTabs": {
+    "message": "No matching tabs."
+  },
+  "summary": {
+    "message": "{0} tabs, {1} duplicate URL groups",
+    "description": "Popup summary. {0} is total tabs. {1} is duplicate URL group count."
+  },
+  "visibleResults": {
+    "message": "{0} visible results",
+    "description": "Results toolbar text. {0} is visible result count."
+  },
+  "visibleResultsSelected": {
+    "message": "{0} visible results, {1} selected",
+    "description": "Results toolbar text. {0} is visible result count. {1} is selected count."
+  },
+  "selectCount": {
+    "message": "Select {0}",
+    "description": "Button label. {0} is number of visible tabs."
+  },
+  "closeSelectedCount": {
+    "message": "Close {0} selected",
+    "description": "Button label. {0} is number of selected tabs."
+  },
+  "closeMatchingCount": {
+    "message": "Close {0} matching",
+    "description": "Button label. {0} is number of matching tabs."
+  },
+  "closeCount": {
+    "message": "Close {0}",
+    "description": "Button label. {0} is number of tabs to close."
+  },
+  "closeAll": {
+    "message": "Close all"
+  },
+  "closeTab": {
+    "message": "Close tab"
+  },
+  "keepOne": {
+    "message": "Keep 1"
+  },
+  "keepOneTitle": {
+    "message": "Close all but one tab in this group"
+  },
+  "tabsDuplicateUrl": {
+    "message": "{0} tabs - duplicate URL",
+    "description": "Duplicate group metadata. {0} is tab count."
+  },
+  "oneTab": {
+    "message": "1 tab"
+  },
+  "selectTab": {
+    "message": "Select {0}",
+    "description": "Checkbox accessible label. {0} is tab title or URL."
+  },
+  "goToTab": {
+    "message": "Go to this tab"
+  },
+  "untitled": {
+    "message": "(Untitled)"
+  },
+  "viewedAge": {
+    "message": "Viewed {0}",
+    "description": "Tab last-viewed label. {0} is a localized relative age."
+  },
+  "couldNotCloseTabs": {
+    "message": "Could not close all selected tabs. {0}",
+    "description": "Error status. {0} is Chrome's error message."
+  },
+  "chromeRejectedRequest": {
+    "message": "Chrome rejected the request."
+  },
+  "couldNotActivateTab": {
+    "message": "Could not activate that tab. {0}",
+    "description": "Error status. {0} is Chrome's error message."
+  },
+  "pageTextSearchNeedsAccess": {
+    "message": "Page-text search needs site access. Use Chrome's extension site access menu and allow CleanTabs on all sites."
+  },
+  "searchingPageText": {
+    "message": "Searching page text for \"{0}\"...",
+    "description": "Status while searching page text. {0} is the user's query."
+  },
+  "contentSearchStatusMatches": {
+    "message": "{0} tabs matched page text.",
+    "description": "Search result status. {0} is matched tab count."
+  },
+  "contentSearchStatusSkipped": {
+    "message": "{0} browser/internal tabs skipped.",
+    "description": "Search result status. {0} is skipped tab count."
+  },
+  "contentSearchStatusFailed": {
+    "message": "{0} searchable-looking tabs failed. First error: {1}",
+    "description": "Search result status. {0} is failed tab count. {1} is the first error."
+  },
+  "noUrl": {
+    "message": "(No URL)"
+  },
+  "justNow": {
+    "message": "just now"
+  },
+  "minutesAgo": {
+    "message": "{0}m ago",
+    "description": "Relative time. {0} is minute count."
+  },
+  "hoursAgo": {
+    "message": "{0}h ago",
+    "description": "Relative time. {0} is hour count."
+  },
+  "daysAgo": {
+    "message": "{0}d ago",
+    "description": "Relative time. {0} is day count."
+  }
+}

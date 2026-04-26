@@ -12,13 +12,14 @@ function makeIcon(size) {
   const width = size;
   const height = size;
   const pixels = Buffer.alloc(width * height * 4);
+  const padding = Math.round(size * 0.125);
+  const logoSize = size - padding * 2;
+  const logoBox = { left: padding, top: padding, size: logoSize };
 
   for (let y = 0; y < height; y += 1) {
     for (let x = 0; x < width; x += 1) {
       const i = (y * width + x) * 4;
-      const edge = Math.min(x, y, width - 1 - x, height - 1 - y);
-      const rounded = edge < size * 0.09 && isCornerOutside(x, y, size);
-      if (rounded) {
+      if (isRoundedLogoOutside(x, y, logoBox)) {
         pixels[i + 3] = 0;
         continue;
       }
@@ -30,35 +31,31 @@ function makeIcon(size) {
     }
   }
 
-  drawTab(pixels, size, 0.18, 0.26, 0.58, 0.46, [226, 244, 242, 255]);
-  drawTab(pixels, size, 0.28, 0.39, 0.58, 0.46, [255, 255, 255, 255]);
-  drawStripe(pixels, size, 0.38, 0.54, 0.36, [15, 118, 110, 255]);
-  drawStripe(pixels, size, 0.38, 0.66, 0.26, [15, 118, 110, 255]);
+  drawTab(pixels, size, logoBox, 0.18, 0.26, 0.58, 0.46, [226, 244, 242, 255]);
+  drawTab(pixels, size, logoBox, 0.28, 0.39, 0.58, 0.46, [255, 255, 255, 255]);
+  drawStripe(pixels, size, logoBox, 0.38, 0.54, 0.36, [15, 118, 110, 255]);
+  drawStripe(pixels, size, logoBox, 0.38, 0.66, 0.26, [15, 118, 110, 255]);
 
   return encodePng(width, height, pixels);
 }
 
-function isCornerOutside(x, y, size) {
-  const radius = size * 0.18;
-  const left = x < radius;
-  const right = x > size - 1 - radius;
-  const top = y < radius;
-  const bottom = y > size - 1 - radius;
-  if (!(left || right) || !(top || bottom)) {
-    return false;
-  }
-
-  const cx = left ? radius : size - 1 - radius;
-  const cy = top ? radius : size - 1 - radius;
-  return Math.hypot(x - cx, y - cy) > radius;
+function isRoundedLogoOutside(x, y, box) {
+  const radius = box.size * 0.18;
+  return (
+    x < box.left ||
+    y < box.top ||
+    x >= box.left + box.size ||
+    y >= box.top + box.size ||
+    isRoundedRectOutside(x, y, box.left, box.top, box.size, box.size, radius)
+  );
 }
 
-function drawTab(pixels, size, leftRatio, topRatio, widthRatio, heightRatio, color) {
-  const left = Math.round(size * leftRatio);
-  const top = Math.round(size * topRatio);
-  const width = Math.round(size * widthRatio);
-  const height = Math.round(size * heightRatio);
-  const radius = Math.max(1, Math.round(size * 0.05));
+function drawTab(pixels, size, box, leftRatio, topRatio, widthRatio, heightRatio, color) {
+  const left = Math.round(box.left + box.size * leftRatio);
+  const top = Math.round(box.top + box.size * topRatio);
+  const width = Math.round(box.size * widthRatio);
+  const height = Math.round(box.size * heightRatio);
+  const radius = Math.max(1, Math.round(box.size * 0.05));
 
   for (let y = top; y < top + height; y += 1) {
     for (let x = left; x < left + width; x += 1) {
@@ -73,11 +70,11 @@ function drawTab(pixels, size, leftRatio, topRatio, widthRatio, heightRatio, col
   }
 }
 
-function drawStripe(pixels, size, leftRatio, topRatio, widthRatio, color) {
-  const left = Math.round(size * leftRatio);
-  const top = Math.round(size * topRatio);
-  const width = Math.round(size * widthRatio);
-  const height = Math.max(1, Math.round(size * 0.045));
+function drawStripe(pixels, size, box, leftRatio, topRatio, widthRatio, color) {
+  const left = Math.round(box.left + box.size * leftRatio);
+  const top = Math.round(box.top + box.size * topRatio);
+  const width = Math.round(box.size * widthRatio);
+  const height = Math.max(1, Math.round(box.size * 0.045));
 
   for (let y = top; y < top + height; y += 1) {
     for (let x = left; x < left + width; x += 1) {

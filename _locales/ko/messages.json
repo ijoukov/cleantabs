@@ -1,0 +1,143 @@
+{
+  "appName": {
+    "message": "CleanTabs"
+  },
+  "appDescription": {
+    "message": "중복, 오래된, 새 탭과 일치하는 Chrome 탭을 찾아 빠르게 닫거나 이동합니다."
+  },
+  "loadingTabs": {
+    "message": "탭을 불러오는 중..."
+  },
+  "refresh": {
+    "message": "새로고침"
+  },
+  "tabFiltersLabel": {
+    "message": "탭 필터"
+  },
+  "urlOrTitleLabel": {
+    "message": "URL 또는 제목"
+  },
+  "searchUrlOrTitlePlaceholder": {
+    "message": "URL 또는 제목 검색"
+  },
+  "pageTextLabel": {
+    "message": "페이지 텍스트"
+  },
+  "searchLoadedPageTextPlaceholder": {
+    "message": "로드된 페이지 텍스트 검색"
+  },
+  "search": {
+    "message": "검색"
+  },
+  "searching": {
+    "message": "검색 중"
+  },
+  "newTabs": {
+    "message": "새 탭"
+  },
+  "clear": {
+    "message": "지우기"
+  },
+  "selectResults": {
+    "message": "결과 선택"
+  },
+  "clearSelection": {
+    "message": "선택 지우기"
+  },
+  "closeResults": {
+    "message": "결과 닫기"
+  },
+  "noMatchingTabs": {
+    "message": "일치하는 탭이 없습니다."
+  },
+  "summary": {
+    "message": "탭 {0}개, 중복 URL 그룹 {1}개"
+  },
+  "visibleResults": {
+    "message": "표시된 결과 {0}개"
+  },
+  "visibleResultsSelected": {
+    "message": "표시된 결과 {0}개, 선택 {1}개"
+  },
+  "selectCount": {
+    "message": "{0}개 선택"
+  },
+  "closeSelectedCount": {
+    "message": "선택한 {0}개 닫기"
+  },
+  "closeMatchingCount": {
+    "message": "일치하는 {0}개 닫기"
+  },
+  "closeCount": {
+    "message": "{0}개 닫기"
+  },
+  "closeAll": {
+    "message": "모두 닫기"
+  },
+  "closeTab": {
+    "message": "탭 닫기"
+  },
+  "keepOne": {
+    "message": "1개 남기기"
+  },
+  "keepOneTitle": {
+    "message": "이 그룹에서 탭 하나만 남기고 모두 닫기"
+  },
+  "tabsDuplicateUrl": {
+    "message": "탭 {0}개 - 중복 URL"
+  },
+  "oneTab": {
+    "message": "탭 1개"
+  },
+  "selectTab": {
+    "message": "{0} 선택"
+  },
+  "goToTab": {
+    "message": "이 탭으로 이동"
+  },
+  "untitled": {
+    "message": "(제목 없음)"
+  },
+  "viewedAge": {
+    "message": "봄 {0}"
+  },
+  "couldNotCloseTabs": {
+    "message": "선택한 모든 탭을 닫을 수 없습니다. {0}"
+  },
+  "chromeRejectedRequest": {
+    "message": "Chrome이 요청을 거부했습니다."
+  },
+  "couldNotActivateTab": {
+    "message": "해당 탭을 활성화할 수 없습니다. {0}"
+  },
+  "pageTextSearchNeedsAccess": {
+    "message": "페이지 텍스트 검색에는 사이트 액세스가 필요합니다. 확장 프로그램의 사이트 액세스 메뉴에서 CleanTabs를 모든 사이트에 허용하세요."
+  },
+  "searchingPageText": {
+    "message": "\"{0}\" 페이지 텍스트 검색 중..."
+  },
+  "contentSearchStatusMatches": {
+    "message": "탭 {0}개가 페이지 텍스트와 일치했습니다."
+  },
+  "contentSearchStatusSkipped": {
+    "message": "브라우저/내부 탭 {0}개를 건너뛰었습니다."
+  },
+  "contentSearchStatusFailed": {
+    "message": "검색 가능해 보이는 탭 {0}개가 실패했습니다. 첫 번째 오류: {1}"
+  },
+  "noUrl": {
+    "message": "(URL 없음)"
+  },
+  "justNow": {
+    "message": "방금"
+  },
+  "minutesAgo": {
+    "message": "{0}분 전"
+  },
+  "hoursAgo": {
+    "message": "{0}시간 전"
+  },
+  "daysAgo": {
+    "message": "{0}일 전"
+  }
+}

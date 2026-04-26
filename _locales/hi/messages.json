@@ -1,0 +1,143 @@
+{
+  "appName": {
+    "message": "CleanTabs"
+  },
+  "appDescription": {
+    "message": "Chrome के डुप्लिकेट, पुराने, नए और मेल खाने वाले टैब खोजें, फिर उन्हें जल्दी बंद करें या खोलें."
+  },
+  "loadingTabs": {
+    "message": "टैब लोड हो रहे हैं..."
+  },
+  "refresh": {
+    "message": "रीफ़्रेश"
+  },
+  "tabFiltersLabel": {
+    "message": "टैब फ़िल्टर"
+  },
+  "urlOrTitleLabel": {
+    "message": "URL या शीर्षक"
+  },
+  "searchUrlOrTitlePlaceholder": {
+    "message": "URL या शीर्षक खोजें"
+  },
+  "pageTextLabel": {
+    "message": "पेज टेक्स्ट"
+  },
+  "searchLoadedPageTextPlaceholder": {
+    "message": "लोड किया गया पेज टेक्स्ट खोजें"
+  },
+  "search": {
+    "message": "खोजें"
+  },
+  "searching": {
+    "message": "खोज जारी है"
+  },
+  "newTabs": {
+    "message": "नए टैब"
+  },
+  "clear": {
+    "message": "साफ़ करें"
+  },
+  "selectResults": {
+    "message": "नतीजे चुनें"
+  },
+  "clearSelection": {
+    "message": "चयन साफ़ करें"
+  },
+  "closeResults": {
+    "message": "नतीजे बंद करें"
+  },
+  "noMatchingTabs": {
+    "message": "कोई मेल खाता टैब नहीं."
+  },
+  "summary": {
+    "message": "{0} टैब, {1} डुप्लिकेट URL समूह"
+  },
+  "visibleResults": {
+    "message": "{0} दिखने वाले नतीजे"
+  },
+  "visibleResultsSelected": {
+    "message": "{0} दिखने वाले नतीजे, {1} चुने गए"
+  },
+  "selectCount": {
+    "message": "{0} चुनें"
+  },
+  "closeSelectedCount": {
+    "message": "चुने गए {0} बंद करें"
+  },
+  "closeMatchingCount": {
+    "message": "मेल खाते {0} बंद करें"
+  },
+  "closeCount": {
+    "message": "{0} बंद करें"
+  },
+  "closeAll": {
+    "message": "सभी बंद करें"
+  },
+  "closeTab": {
+    "message": "टैब बंद करें"
+  },
+  "keepOne": {
+    "message": "1 रखें"
+  },
+  "keepOneTitle": {
+    "message": "इस समूह में एक टैब छोड़कर बाकी बंद करें"
+  },
+  "tabsDuplicateUrl": {
+    "message": "{0} टैब - डुप्लिकेट URL"
+  },
+  "oneTab": {
+    "message": "1 टैब"
+  },
+  "selectTab": {
+    "message": "{0} चुनें"
+  },
+  "goToTab": {
+    "message": "इस टैब पर जाएं"
+  },
+  "untitled": {
+    "message": "(बिना शीर्षक)"
+  },
+  "viewedAge": {
+    "message": "{0} देखा गया"
+  },
+  "couldNotCloseTabs": {
+    "message": "सभी चुने गए टैब बंद नहीं किए जा सके. {0}"
+  },
+  "chromeRejectedRequest": {
+    "message": "Chrome ने अनुरोध अस्वीकार कर दिया."
+  },
+  "couldNotActivateTab": {
+    "message": "उस टैब को सक्रिय नहीं किया जा सका. {0}"
+  },
+  "pageTextSearchNeedsAccess": {
+    "message": "पेज टेक्स्ट खोज के लिए साइट एक्सेस चाहिए. एक्सटेंशन साइट एक्सेस मेनू में CleanTabs को सभी साइटों पर अनुमति दें."
+  },
+  "searchingPageText": {
+    "message": "\"{0}\" के लिए पेज टेक्स्ट खोजा जा रहा है..."
+  },
+  "contentSearchStatusMatches": {
+    "message": "{0} टैब पेज टेक्स्ट से मेल खाते हैं."
+  },
+  "contentSearchStatusSkipped": {
+    "message": "{0} ब्राउज़र/आंतरिक टैब छोड़े गए."
+  },
+  "contentSearchStatusFailed": {
+    "message": "{0} खोजे जा सकने वाले टैब विफल रहे. पहला त्रुटि संदेश: {1}"
+  },
+  "noUrl": {
+    "message": "(कोई URL नहीं)"
+  },
+  "justNow": {
+    "message": "अभी"
+  },
+  "minutesAgo": {
+    "message": "{0} मिनट पहले"
+  },
+  "hoursAgo": {
+    "message": "{0} घंटे पहले"
+  },
+  "daysAgo": {
+    "message": "{0} दिन पहले"
+  }
+}

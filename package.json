@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "icons": "node scripts/generate-icons.mjs",
+    "locales": "node scripts/generate-locales.mjs",
     "preview": "npx http-server . -c-1 -p 4173",
     "validate": "node scripts/validate.mjs",
     "package": "node scripts/package.mjs"

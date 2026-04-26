@@ -6,10 +6,57 @@ const NEW_TAB_URLS = new Set([
 ]);
 const CONTENT_SEARCH_CONCURRENCY = 4;
 const tabApi = globalThis.cleanTabsPreviewApi || chrome;
+const DEFAULT_MESSAGES = {
+  appName: "CleanTabs",
+  loadingTabs: "Loading tabs...",
+  refresh: "Refresh",
+  tabFiltersLabel: "Tab filters",
+  urlOrTitleLabel: "URL or title",
+  searchUrlOrTitlePlaceholder: "Search URL or title",
+  pageTextLabel: "Page text",
+  searchLoadedPageTextPlaceholder: "Search loaded page text",
+  search: "Search",
+  searching: "Searching",
+  newTabs: "New tabs",
+  clear: "Clear",
+  selectResults: "Select results",
+  clearSelection: "Clear selection",
+  closeResults: "Close results",
+  noMatchingTabs: "No matching tabs.",
+  summary: "$1 tabs, $2 duplicate URL groups",
+  visibleResults: "$1 visible results",
+  visibleResultsSelected: "$1 visible results, $2 selected",
+  selectCount: "Select $1",
+  closeSelectedCount: "Close $1 selected",
+  closeMatchingCount: "Close $1 matching",
+  closeCount: "Close $1",
+  closeAll: "Close all",
+  closeTab: "Close tab",
+  keepOne: "Keep 1",
+  keepOneTitle: "Close all but one tab in this group",
+  tabsDuplicateUrl: "$1 tabs - duplicate URL",
+  oneTab: "1 tab",
+  selectTab: "Select $1",
+  goToTab: "Go to this tab",
+  untitled: "(Untitled)",
+  viewedAge: "Viewed $1",
+  couldNotCloseTabs: "Could not close all selected tabs. $1",
+  chromeRejectedRequest: "Chrome rejected the request.",
+  couldNotActivateTab: "Could not activate that tab. $1",
+  pageTextSearchNeedsAccess: "Page-text search needs site access. Use Chrome's extension site access menu and allow CleanTabs on all sites.",
+  searchingPageText: "Searching page text for \"$1\"...",
+  contentSearchStatusMatches: "$1 tabs matched page text.",
+  contentSearchStatusSkipped: "$1 browser/internal tabs skipped.",
+  contentSearchStatusFailed: "$1 searchable-looking tabs failed. First error: $2",
+  noUrl: "(No URL)",
+  justNow: "just now",
+  minutesAgo: "$1m ago",
+  hoursAgo: "$1h ago",
+  daysAgo: "$1d ago"
+};
 
 const state = {
   tabs: [],
-  tabMeta: {},
   contentMatches: null,
   contentQuery: "",
   contentSearchRunId: 0,
@@ -22,12 +69,17 @@ const state = {
 };
 
 const els = {
+  appTitle: document.querySelector("#appTitle"),
   summary: document.querySelector("#summary"),
   refreshButton: document.querySelector("#refreshButton"),
+  filters: document.querySelector(".filters"),
+  metadataSearchLabel: document.querySelector("#metadataSearchLabel"),
   metadataSearch: document.querySelector("#metadataSearch"),
+  contentSearchLabel: document.querySelector("#contentSearchLabel"),
   contentSearch: document.querySelector("#contentSearch"),
   contentSearchButton: document.querySelector("#contentSearchButton"),
   newTabsOnly: document.querySelector("#newTabsOnly"),
+  newTabsLabel: document.querySelector("#newTabsLabel"),
   clearFiltersButton: document.querySelector("#clearFiltersButton"),
   contentStatus: document.querySelector("#contentStatus"),
   resultsActions: document.querySelector("#resultsActions"),
@@ -39,10 +91,54 @@ const els = {
   emptyState: document.querySelector("#emptyState")
 };
 
+globalThis.cleanTabsPreviewRender = render;
+assertRequiredElements();
+
 document.addEventListener("DOMContentLoaded", () => {
+  localizeStaticUi();
+  globalThis.cleanTabsPreviewLocalize = localizeStaticUi;
   bindEvents();
   refreshTabs();
 });
+
+function t(key, substitutions = []) {
+  const values = Array.isArray(substitutions) ? substitutions : [substitutions];
+  const message = tabApi.i18n?.getMessage?.(key) || DEFAULT_MESSAGES[key] || key;
+  return values.reduce((result, value, index) => {
+    return result
+      .replaceAll(`{${index}}`, String(value))
+      .replaceAll(`$${index + 1}`, String(value));
+  }, message);
+}
+
+function localizeStaticUi() {
+  document.documentElement.lang = tabApi.i18n?.getUILanguage?.() || "en";
+  document.title = t("appName");
+  els.appTitle.textContent = t("appName");
+  els.summary.textContent = t("loadingTabs");
+  els.refreshButton.textContent = t("refresh");
+  els.filters.setAttribute("aria-label", t("tabFiltersLabel"));
+  els.metadataSearchLabel.textContent = t("urlOrTitleLabel");
+  els.metadataSearch.placeholder = t("searchUrlOrTitlePlaceholder");
+  els.contentSearchLabel.textContent = t("pageTextLabel");
+  els.contentSearch.placeholder = t("searchLoadedPageTextPlaceholder");
+  els.contentSearchButton.textContent = t("search");
+  els.newTabsLabel.textContent = t("newTabs");
+  els.clearFiltersButton.textContent = t("clear");
+  els.selectVisibleButton.textContent = t("selectResults");
+  els.clearSelectionButton.textContent = t("clearSelection");
+  els.closeVisibleButton.textContent = t("closeResults");
+  els.emptyState.textContent = t("noMatchingTabs");
+}
+
+function assertRequiredElements() {
+  const missing = Object.entries(els)
+    .filter(([, element]) => !element)
+    .map(([name]) => name);
+  if (missing.length) {
+    throw new Error(`CleanTabs popup markup is missing required elements: ${missing.join(", ")}`);
+  }
+}
 
 function bindEvents() {
   els.refreshButton.addEventListener("click", () => refreshTabs({ preserveContentSearch: false }));
@@ -92,10 +188,7 @@ function bindEvents() {
 }
 
 async function refreshTabs({ preserveContentSearch = true } = {}) {
-  const [tabs, metaResponse] = await Promise.all([
-    tabApi.tabs.query({}),
-    tabApi.runtime.sendMessage({ type: "getTabMeta" }).catch(() => ({ tabMeta: {} }))
-  ]);
+  const tabs = await tabApi.tabs.query({});
 
   if (!preserveContentSearch) {
     state.contentSearchRunId += 1;
@@ -106,7 +199,6 @@ async function refreshTabs({ preserveContentSearch = true } = {}) {
   }
 
   state.tabs = tabs.sort((a, b) => a.windowId - b.windowId || a.index - b.index);
-  state.tabMeta = metaResponse?.tabMeta || {};
   removeMissingSelections();
   render();
 }
@@ -116,7 +208,7 @@ function render() {
   const groups = groupByUrl(filtered);
   const duplicateCount = groups.filter((group) => group.tabs.length > 1).length;
 
-  els.summary.textContent = `${state.tabs.length} tabs, ${duplicateCount} duplicate URL groups`;
+  els.summary.textContent = t("summary", [state.tabs.length, duplicateCount]);
   renderContentStatus();
   renderResultsActions(filtered);
   els.groups.replaceChildren(...groups.map(renderGroup));
@@ -155,7 +247,11 @@ function groupByUrl(tabs) {
   }
 
   return [...byUrl.entries()]
-    .map(([url, groupTabs]) => ({ url, tabs: groupTabs }))
+    .map(([url, groupTabs]) => ({
+      url,
+      title: getGroupTitle(groupTabs),
+      tabs: groupTabs
+    }))
     .sort((a, b) => {
       const duplicateDelta = Number(b.tabs.length > 1) - Number(a.tabs.length > 1);
       return duplicateDelta || b.tabs.length - a.tabs.length || a.url.localeCompare(b.url);
@@ -172,15 +268,15 @@ function renderResultsActions(filteredTabs) {
   }
 
   const selectedCount = selectedVisibleTabs.length;
-  const resultLabel = `${filteredTabs.length} visible result${filteredTabs.length === 1 ? "" : "s"}`;
-  const selectedLabel = selectedCount ? `, ${selectedCount} selected` : "";
-  els.resultsMeta.textContent = `${resultLabel}${selectedLabel}`;
-  els.selectVisibleButton.textContent = `Select ${filteredTabs.length}`;
+  els.resultsMeta.textContent = selectedCount
+    ? t("visibleResultsSelected", [filteredTabs.length, selectedCount])
+    : t("visibleResults", filteredTabs.length);
+  els.selectVisibleButton.textContent = t("selectCount", filteredTabs.length);
   els.clearSelectionButton.disabled = state.selected.size === 0;
   els.closeVisibleButton.disabled = !selectedCount && !hasActiveResultFilter();
   els.closeVisibleButton.textContent = selectedCount
-    ? `Close ${selectedCount} selected`
-    : `Close ${filteredTabs.length} matching`;
+    ? t("closeSelectedCount", selectedCount)
+    : t("closeMatchingCount", filteredTabs.length);
 }
 
 function hasActiveResultFilter() {
@@ -198,15 +294,13 @@ function renderGroup(group) {
 
   const title = document.createElement("div");
   title.className = "group-title";
-  const groupUrl = document.createElement("span");
-  groupUrl.className = "group-url";
-  groupUrl.textContent = group.url;
+  const groupLabel = document.createElement("span");
+  groupLabel.className = "group-label";
+  groupLabel.textContent = group.title || group.url;
   const groupMeta = document.createElement("span");
   groupMeta.className = "group-meta";
-  groupMeta.textContent = isDuplicateGroup
-    ? `${group.tabs.length} tabs - duplicate URL`
-    : "1 tab";
-  title.append(groupUrl, groupMeta);
+  groupMeta.textContent = getGroupMeta(group, isDuplicateGroup);
+  title.append(groupLabel, groupMeta);
 
   const actions = document.createElement("div");
   actions.className = "group-actions";
@@ -223,8 +317,8 @@ function renderGroup(group) {
   if (isDuplicateGroup) {
     const closeButOne = document.createElement("button");
     closeButOne.type = "button";
-    closeButOne.textContent = "Keep 1";
-    closeButOne.title = "Close all but one tab in this group";
+    closeButOne.textContent = t("keepOne");
+    closeButOne.title = t("keepOneTitle");
     closeButOne.addEventListener("click", () => {
       closeTabs(getTabsExceptKeeper(group.tabs));
     });
@@ -247,7 +341,7 @@ function renderTabRow(tab) {
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.checked = state.selected.has(tab.id);
-  checkbox.setAttribute("aria-label", `Select ${tab.title || getTabUrl(tab) || "tab"}`);
+  checkbox.setAttribute("aria-label", t("selectTab", tab.title || getTabUrl(tab) || t("untitled")));
   checkbox.addEventListener("change", () => {
     if (checkbox.checked) {
       state.selected.add(tab.id);
@@ -262,12 +356,12 @@ function renderTabRow(tab) {
   const jump = document.createElement("button");
   jump.type = "button";
   jump.className = "tab-jump";
-  jump.title = "Go to this tab";
+  jump.title = t("goToTab");
   jump.addEventListener("click", () => activateTab(tab));
 
   const tabTitle = document.createElement("span");
   tabTitle.className = "tab-title";
-  tabTitle.textContent = tab.title || "(Untitled)";
+  tabTitle.textContent = tab.title || t("untitled");
 
   const tabUrl = document.createElement("span");
   tabUrl.className = "tab-url";
@@ -277,11 +371,9 @@ function renderTabRow(tab) {
 
   const ages = document.createElement("div");
   ages.className = "tab-ages";
-  const opened = document.createElement("span");
-  opened.textContent = `Opened ${formatAge(getOpenedAt(tab))}`;
   const viewed = document.createElement("span");
-  viewed.textContent = `Viewed ${formatAge(getLastViewedAt(tab))}`;
-  ages.append(opened, viewed);
+  viewed.textContent = t("viewedAge", formatAge(getLastViewedAt(tab)));
+  ages.append(viewed);
 
   row.append(checkbox, icon, jump, ages);
   return row;
@@ -317,7 +409,7 @@ async function closeTabs(tabs) {
   try {
     await tabApi.tabs.remove(tabIds);
   } catch (error) {
-    setContentStatus(`Could not close all selected tabs. ${error?.message || "Chrome rejected the request."}`);
+    setContentStatus(t("couldNotCloseTabs", error?.message || t("chromeRejectedRequest")));
   }
 
   for (const id of tabIds) {
@@ -332,7 +424,7 @@ async function activateTab(tab) {
     await tabApi.tabs.update(tab.id, { active: true });
     window.close();
   } catch (error) {
-    setContentStatus(`Could not activate that tab. ${error?.message || "Chrome rejected the request."}`);
+    setContentStatus(t("couldNotActivateTab", error?.message || t("chromeRejectedRequest")));
   }
 }
 
@@ -357,12 +449,12 @@ async function runContentSearch() {
   }
   if (!hasAccess) {
     setContentSearchBusy(false);
-    setContentStatus("Page-text search needs site access. Use Chrome's extension site access menu and allow CleanTabs on all sites.");
+    setContentStatus(t("pageTextSearchNeedsAccess"));
     render();
     return;
   }
 
-  setContentStatus(`Searching page text for "${query}"...`);
+  setContentStatus(t("searchingPageText", query));
   const queryLower = query.toLowerCase();
   const searchableTabs = state.tabs.slice();
   const results = await mapWithConcurrency(searchableTabs, CONTENT_SEARCH_CONCURRENCY, (tab) => searchTabContent(tab, queryLower));
@@ -441,13 +533,13 @@ async function searchTabContent(tab, queryLower) {
 }
 
 function formatContentSearchStatus(matchedCount, skippedCount, failedResults) {
-  const parts = [`${matchedCount} tabs matched page text.`];
+  const parts = [t("contentSearchStatusMatches", matchedCount)];
   if (skippedCount) {
-    parts.push(`${skippedCount} browser/internal tabs skipped.`);
+    parts.push(t("contentSearchStatusSkipped", skippedCount));
   }
   if (failedResults.length) {
     const sample = failedResults[0].reason;
-    parts.push(`${failedResults.length} searchable-looking tabs failed. First error: ${sample}`);
+    parts.push(t("contentSearchStatusFailed", [failedResults.length, sample]));
   }
   return parts.join(" ");
 }
@@ -470,7 +562,7 @@ function setContentStatus(text) {
 
 function setContentSearchBusy(isBusy) {
   els.contentSearchButton.disabled = isBusy;
-  els.contentSearchButton.textContent = isBusy ? "Searching" : "Search";
+  els.contentSearchButton.textContent = isBusy ? t("searching") : t("search");
 }
 
 async function mapWithConcurrency(items, concurrency, mapper) {
@@ -497,7 +589,7 @@ function removeMissingSelections() {
 
 function normalizeUrl(url) {
   if (!url) {
-    return "(No URL)";
+    return t("noUrl");
   }
   try {
     const parsed = new URL(url);
@@ -539,11 +631,21 @@ function getTabHost(tab) {
   }
 }
 
+function getGroupTitle(tabs) {
+  const titles = [...new Set(tabs.map((tab) => (tab.title || "").trim()).filter(Boolean))];
+  return titles.length === 1 ? titles[0] : "";
+}
+
+function getGroupMeta(group, isDuplicateGroup) {
+  const prefix = isDuplicateGroup ? t("tabsDuplicateUrl", group.tabs.length) : t("oneTab");
+  return group.title ? `${prefix} - ${group.url}` : prefix;
+}
+
 function getPrimaryCloseLabel(groupSize, selectedCount) {
   if (selectedCount) {
-    return `Close ${selectedCount}`;
+    return t("closeCount", selectedCount);
   }
-  return groupSize === 1 ? "Close tab" : "Close all";
+  return groupSize === 1 ? t("closeTab") : t("closeAll");
 }
 
 function getTabsExceptKeeper(tabs) {
@@ -551,12 +653,8 @@ function getTabsExceptKeeper(tabs) {
   return tabs.filter((tab) => tab.id !== keeper.id);
 }
 
-function getOpenedAt(tab) {
-  return state.tabMeta[String(tab.id)]?.openedAt || Date.now();
-}
-
 function getLastViewedAt(tab) {
-  return tab.lastAccessed || state.tabMeta[String(tab.id)]?.lastViewedAt || getOpenedAt(tab);
+  return tab.lastAccessed || Date.now();
 }
 
 function formatAge(timestamp) {
@@ -570,13 +668,13 @@ function formatAge(timestamp) {
   const day = 24 * hour;
 
   if (elapsed < minute) {
-    return "just now";
+    return t("justNow");
   }
   if (elapsed < hour) {
-    return `${Math.floor(elapsed / minute)}m ago`;
+    return t("minutesAgo", Math.floor(elapsed / minute));
   }
   if (elapsed < day) {
-    return `${Math.floor(elapsed / hour)}h ago`;
+    return t("hoursAgo", Math.floor(elapsed / hour));
   }
-  return `${Math.floor(elapsed / day)}d ago`;
+  return t("daysAgo", Math.floor(elapsed / day));
 }

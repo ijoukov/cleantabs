@@ -1,0 +1,143 @@
+{
+  "appName": {
+    "message": "CleanTabs"
+  },
+  "appDescription": {
+    "message": "Yinelenen, eski, yeni ve eşleşen Chrome sekmelerini bulup hızlıca kapatın veya açın."
+  },
+  "loadingTabs": {
+    "message": "Sekmeler yükleniyor..."
+  },
+  "refresh": {
+    "message": "Yenile"
+  },
+  "tabFiltersLabel": {
+    "message": "Sekme filtreleri"
+  },
+  "urlOrTitleLabel": {
+    "message": "URL veya başlık"
+  },
+  "searchUrlOrTitlePlaceholder": {
+    "message": "URL veya başlık ara"
+  },
+  "pageTextLabel": {
+    "message": "Sayfa metni"
+  },
+  "searchLoadedPageTextPlaceholder": {
+    "message": "Yüklenen sayfa metnini ara"
+  },
+  "search": {
+    "message": "Ara"
+  },
+  "searching": {
+    "message": "Aranıyor"
+  },
+  "newTabs": {
+    "message": "Yeni sekmeler"
+  },
+  "clear": {
+    "message": "Temizle"
+  },
+  "selectResults": {
+    "message": "Sonuçları seç"
+  },
+  "clearSelection": {
+    "message": "Seçimi temizle"
+  },
+  "closeResults": {
+    "message": "Sonuçları kapat"
+  },
+  "noMatchingTabs": {
+    "message": "Eşleşen sekme yok."
+  },
+  "summary": {
+    "message": "{0} sekme, {1} yinelenen URL grubu"
+  },
+  "visibleResults": {
+    "message": "{0} görünür sonuç"
+  },
+  "visibleResultsSelected": {
+    "message": "{0} görünür sonuç, {1} seçili"
+  },
+  "selectCount": {
+    "message": "{0} seç"
+  },
+  "closeSelectedCount": {
+    "message": "Seçili {0} kapat"
+  },
+  "closeMatchingCount": {
+    "message": "Eşleşen {0} kapat"
+  },
+  "closeCount": {
+    "message": "{0} kapat"
+  },
+  "closeAll": {
+    "message": "Tümünü kapat"
+  },
+  "closeTab": {
+    "message": "Sekmeyi kapat"
+  },
+  "keepOne": {
+    "message": "1 bırak"
+  },
+  "keepOneTitle": {
+    "message": "Bu gruptaki bir sekme hariç hepsini kapat"
+  },
+  "tabsDuplicateUrl": {
+    "message": "{0} sekme - yinelenen URL"
+  },
+  "oneTab": {
+    "message": "1 sekme"
+  },
+  "selectTab": {
+    "message": "{0} seç"
+  },
+  "goToTab": {
+    "message": "Bu sekmeye git"
+  },
+  "untitled": {
+    "message": "(Başlıksız)"
+  },
+  "viewedAge": {
+    "message": "Görüntülendi {0}"
+  },
+  "couldNotCloseTabs": {
+    "message": "Seçili tüm sekmeler kapatılamadı. {0}"
+  },
+  "chromeRejectedRequest": {
+    "message": "Chrome isteği reddetti."
+  },
+  "couldNotActivateTab": {
+    "message": "Bu sekme etkinleştirilemedi. {0}"
+  },
+  "pageTextSearchNeedsAccess": {
+    "message": "Sayfa metni araması site erişimi gerektirir. Uzantı site erişimi menüsünden CleanTabs'e tüm sitelerde izin verin."
+  },
+  "searchingPageText": {
+    "message": "\"{0}\" için sayfa metni aranıyor..."
+  },
+  "contentSearchStatusMatches": {
+    "message": "{0} sekme sayfa metniyle eşleşti."
+  },
+  "contentSearchStatusSkipped": {
+    "message": "{0} tarayıcı/dahili sekme atlandı."
+  },
+  "contentSearchStatusFailed": {
+    "message": "Aranabilir görünen {0} sekme başarısız oldu. İlk hata: {1}"
+  },
+  "noUrl": {
+    "message": "(URL yok)"
+  },
+  "justNow": {
+    "message": "az önce"
+  },
+  "minutesAgo": {
+    "message": "{0} dk önce"
+  },
+  "hoursAgo": {
+    "message": "{0} sa önce"
+  },
+  "daysAgo": {
+    "message": "{0} gün önce"
+  }
+}

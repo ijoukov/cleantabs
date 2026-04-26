@@ -1,0 +1,143 @@
+{
+  "appName": {
+    "message": "CleanTabs"
+  },
+  "appDescription": {
+    "message": "重複、古い、新しい、一致する Chrome タブを見つけて、すばやく閉じたり移動したりできます。"
+  },
+  "loadingTabs": {
+    "message": "タブを読み込み中..."
+  },
+  "refresh": {
+    "message": "更新"
+  },
+  "tabFiltersLabel": {
+    "message": "タブ フィルタ"
+  },
+  "urlOrTitleLabel": {
+    "message": "URL またはタイトル"
+  },
+  "searchUrlOrTitlePlaceholder": {
+    "message": "URL またはタイトルを検索"
+  },
+  "pageTextLabel": {
+    "message": "ページ本文"
+  },
+  "searchLoadedPageTextPlaceholder": {
+    "message": "読み込み済みページ本文を検索"
+  },
+  "search": {
+    "message": "検索"
+  },
+  "searching": {
+    "message": "検索中"
+  },
+  "newTabs": {
+    "message": "新しいタブ"
+  },
+  "clear": {
+    "message": "クリア"
+  },
+  "selectResults": {
+    "message": "結果を選択"
+  },
+  "clearSelection": {
+    "message": "選択を解除"
+  },
+  "closeResults": {
+    "message": "結果を閉じる"
+  },
+  "noMatchingTabs": {
+    "message": "一致するタブはありません。"
+  },
+  "summary": {
+    "message": "{0} 個のタブ、{1} 個の重複 URL グループ"
+  },
+  "visibleResults": {
+    "message": "{0} 件の表示結果"
+  },
+  "visibleResultsSelected": {
+    "message": "{0} 件の表示結果、{1} 件選択中"
+  },
+  "selectCount": {
+    "message": "{0} 件を選択"
+  },
+  "closeSelectedCount": {
+    "message": "選択した {0} 件を閉じる"
+  },
+  "closeMatchingCount": {
+    "message": "一致する {0} 件を閉じる"
+  },
+  "closeCount": {
+    "message": "{0} 件を閉じる"
+  },
+  "closeAll": {
+    "message": "すべて閉じる"
+  },
+  "closeTab": {
+    "message": "タブを閉じる"
+  },
+  "keepOne": {
+    "message": "1 つ残す"
+  },
+  "keepOneTitle": {
+    "message": "このグループのタブを 1 つ残して閉じる"
+  },
+  "tabsDuplicateUrl": {
+    "message": "{0} 個のタブ - 重複 URL"
+  },
+  "oneTab": {
+    "message": "1 個のタブ"
+  },
+  "selectTab": {
+    "message": "{0} を選択"
+  },
+  "goToTab": {
+    "message": "このタブへ移動"
+  },
+  "untitled": {
+    "message": "(無題)"
+  },
+  "viewedAge": {
+    "message": "表示: {0}"
+  },
+  "couldNotCloseTabs": {
+    "message": "選択したすべてのタブを閉じられませんでした。{0}"
+  },
+  "chromeRejectedRequest": {
+    "message": "Chrome がリクエストを拒否しました。"
+  },
+  "couldNotActivateTab": {
+    "message": "そのタブを有効にできませんでした。{0}"
+  },
+  "pageTextSearchNeedsAccess": {
+    "message": "ページ本文検索にはサイトアクセスが必要です。拡張機能のサイトアクセスメニューで CleanTabs をすべてのサイトに許可してください。"
+  },
+  "searchingPageText": {
+    "message": "\"{0}\" のページ本文を検索中..."
+  },
+  "contentSearchStatusMatches": {
+    "message": "{0} 個のタブがページ本文に一致しました。"
+  },
+  "contentSearchStatusSkipped": {
+    "message": "{0} 個のブラウザ/内部タブをスキップしました。"
+  },
+  "contentSearchStatusFailed": {
+    "message": "検索できそうな {0} 個のタブで失敗しました。最初のエラー: {1}"
+  },
+  "noUrl": {
+    "message": "(URL なし)"
+  },
+  "justNow": {
+    "message": "たった今"
+  },
+  "minutesAgo": {
+    "message": "{0} 分前"
+  },
+  "hoursAgo": {
+    "message": "{0} 時間前"
+  },
+  "daysAgo": {
+    "message": "{0} 日前"
+  }
+}

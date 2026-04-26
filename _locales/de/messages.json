@@ -1,0 +1,143 @@
+{
+  "appName": {
+    "message": "CleanTabs"
+  },
+  "appDescription": {
+    "message": "Finde doppelte, alte, neue und passende Chrome-Tabs und schließe oder öffne sie schnell."
+  },
+  "loadingTabs": {
+    "message": "Tabs werden geladen..."
+  },
+  "refresh": {
+    "message": "Aktualisieren"
+  },
+  "tabFiltersLabel": {
+    "message": "Tabfilter"
+  },
+  "urlOrTitleLabel": {
+    "message": "URL oder Titel"
+  },
+  "searchUrlOrTitlePlaceholder": {
+    "message": "URL oder Titel suchen"
+  },
+  "pageTextLabel": {
+    "message": "Seitentext"
+  },
+  "searchLoadedPageTextPlaceholder": {
+    "message": "Geladenen Seitentext suchen"
+  },
+  "search": {
+    "message": "Suchen"
+  },
+  "searching": {
+    "message": "Suchen"
+  },
+  "newTabs": {
+    "message": "Neue Tabs"
+  },
+  "clear": {
+    "message": "Leeren"
+  },
+  "selectResults": {
+    "message": "Ergebnisse auswählen"
+  },
+  "clearSelection": {
+    "message": "Auswahl löschen"
+  },
+  "closeResults": {
+    "message": "Ergebnisse schließen"
+  },
+  "noMatchingTabs": {
+    "message": "Keine passenden Tabs."
+  },
+  "summary": {
+    "message": "{0} Tabs, {1} doppelte URL-Gruppen"
+  },
+  "visibleResults": {
+    "message": "{0} sichtbare Ergebnisse"
+  },
+  "visibleResultsSelected": {
+    "message": "{0} sichtbare Ergebnisse, {1} ausgewählt"
+  },
+  "selectCount": {
+    "message": "{0} auswählen"
+  },
+  "closeSelectedCount": {
+    "message": "{0} ausgewählte schließen"
+  },
+  "closeMatchingCount": {
+    "message": "{0} passende schließen"
+  },
+  "closeCount": {
+    "message": "{0} schließen"
+  },
+  "closeAll": {
+    "message": "Alle schließen"
+  },
+  "closeTab": {
+    "message": "Tab schließen"
+  },
+  "keepOne": {
+    "message": "1 behalten"
+  },
+  "keepOneTitle": {
+    "message": "Alle Tabs in dieser Gruppe bis auf einen schließen"
+  },
+  "tabsDuplicateUrl": {
+    "message": "{0} Tabs - doppelte URL"
+  },
+  "oneTab": {
+    "message": "1 Tab"
+  },
+  "selectTab": {
+    "message": "{0} auswählen"
+  },
+  "goToTab": {
+    "message": "Zu diesem Tab wechseln"
+  },
+  "untitled": {
+    "message": "(Ohne Titel)"
+  },
+  "viewedAge": {
+    "message": "Angesehen {0}"
+  },
+  "couldNotCloseTabs": {
+    "message": "Nicht alle ausgewählten Tabs konnten geschlossen werden. {0}"
+  },
+  "chromeRejectedRequest": {
+    "message": "Chrome hat die Anfrage abgelehnt."
+  },
+  "couldNotActivateTab": {
+    "message": "Dieser Tab konnte nicht aktiviert werden. {0}"
+  },
+  "pageTextSearchNeedsAccess": {
+    "message": "Die Seitentextsuche benötigt Websitezugriff. Erlaube CleanTabs auf allen Websites im Zugriffsmenü der Erweiterung."
+  },
+  "searchingPageText": {
+    "message": "Seitentext wird nach \"{0}\" durchsucht..."
+  },
+  "contentSearchStatusMatches": {
+    "message": "{0} Tabs stimmen mit dem Seitentext überein."
+  },
+  "contentSearchStatusSkipped": {
+    "message": "{0} Browser-/interne Tabs übersprungen."
+  },
+  "contentSearchStatusFailed": {
+    "message": "{0} scheinbar durchsuchbare Tabs sind fehlgeschlagen. Erster Fehler: {1}"
+  },
+  "noUrl": {
+    "message": "(Keine URL)"
+  },
+  "justNow": {
+    "message": "gerade eben"
+  },
+  "minutesAgo": {
+    "message": "vor {0} Min."
+  },
+  "hoursAgo": {
+    "message": "vor {0} Std."
+  },
+  "daysAgo": {
+    "message": "vor {0} Tg."
+  }
+}

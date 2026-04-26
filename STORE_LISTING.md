@@ -24,7 +24,7 @@ Features:
 - Close all tabs in a group, close all but one, or close selected tabs.
 - Select and close matching results across multiple groups.
 - Jump directly to any listed tab.
-- Show approximate opened and last viewed age.
+- Show approximate last viewed age.
 
 CleanTabs runs locally in your browser and does not send tab data or page content to a server.
 
@@ -41,10 +41,6 @@ CleanTabs helps users find, review, close, and switch between open browser tabs.
 ### tabs
 
 Required to list open tabs, show URLs and titles, activate a selected tab, and close tabs selected by the user.
-
-### storage
-
-Required to store local approximate tab open and last viewed timestamps.
 
 ### scripting
 

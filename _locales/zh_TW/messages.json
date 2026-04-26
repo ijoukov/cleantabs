@@ -1,0 +1,143 @@
+{
+  "appName": {
+    "message": "CleanTabs"
+  },
+  "appDescription": {
+    "message": "尋找重複、舊的、新的和相符的 Chrome 分頁，並快速關閉或切換。"
+  },
+  "loadingTabs": {
+    "message": "正在載入分頁..."
+  },
+  "refresh": {
+    "message": "重新整理"
+  },
+  "tabFiltersLabel": {
+    "message": "分頁篩選"
+  },
+  "urlOrTitleLabel": {
+    "message": "URL 或標題"
+  },
+  "searchUrlOrTitlePlaceholder": {
+    "message": "搜尋 URL 或標題"
+  },
+  "pageTextLabel": {
+    "message": "頁面文字"
+  },
+  "searchLoadedPageTextPlaceholder": {
+    "message": "搜尋已載入頁面文字"
+  },
+  "search": {
+    "message": "搜尋"
+  },
+  "searching": {
+    "message": "搜尋中"
+  },
+  "newTabs": {
+    "message": "新分頁"
+  },
+  "clear": {
+    "message": "清除"
+  },
+  "selectResults": {
+    "message": "選取結果"
+  },
+  "clearSelection": {
+    "message": "清除選取"
+  },
+  "closeResults": {
+    "message": "關閉結果"
+  },
+  "noMatchingTabs": {
+    "message": "沒有相符的分頁。"
+  },
+  "summary": {
+    "message": "{0} 個分頁，{1} 個重複 URL 群組"
+  },
+  "visibleResults": {
+    "message": "{0} 個可見結果"
+  },
+  "visibleResultsSelected": {
+    "message": "{0} 個可見結果，已選取 {1} 個"
+  },
+  "selectCount": {
+    "message": "選取 {0} 個"
+  },
+  "closeSelectedCount": {
+    "message": "關閉已選取的 {0} 個"
+  },
+  "closeMatchingCount": {
+    "message": "關閉相符的 {0} 個"
+  },
+  "closeCount": {
+    "message": "關閉 {0} 個"
+  },
+  "closeAll": {
+    "message": "全部關閉"
+  },
+  "closeTab": {
+    "message": "關閉分頁"
+  },
+  "keepOne": {
+    "message": "保留 1 個"
+  },
+  "keepOneTitle": {
+    "message": "關閉此群組中除一個以外的所有分頁"
+  },
+  "tabsDuplicateUrl": {
+    "message": "{0} 個分頁 - 重複 URL"
+  },
+  "oneTab": {
+    "message": "1 個分頁"
+  },
+  "selectTab": {
+    "message": "選取 {0}"
+  },
+  "goToTab": {
+    "message": "前往此分頁"
+  },
+  "untitled": {
+    "message": "（無標題）"
+  },
+  "viewedAge": {
+    "message": "檢視於 {0}"
+  },
+  "couldNotCloseTabs": {
+    "message": "無法關閉所有已選取的分頁。{0}"
+  },
+  "chromeRejectedRequest": {
+    "message": "Chrome 拒絕了要求。"
+  },
+  "couldNotActivateTab": {
+    "message": "無法啟用該分頁。{0}"
+  },
+  "pageTextSearchNeedsAccess": {
+    "message": "頁面文字搜尋需要網站存取權。請在擴充功能的網站存取選單中允許 CleanTabs 存取所有網站。"
+  },
+  "searchingPageText": {
+    "message": "正在搜尋頁面文字「{0}」..."
+  },
+  "contentSearchStatusMatches": {
+    "message": "{0} 個分頁符合頁面文字。"
+  },
+  "contentSearchStatusSkipped": {
+    "message": "已略過 {0} 個瀏覽器/內部分頁。"
+  },
+  "contentSearchStatusFailed": {
+    "message": "{0} 個看似可搜尋的分頁失敗。第一個錯誤：{1}"
+  },
+  "noUrl": {
+    "message": "（無 URL）"
+  },
+  "justNow": {
+    "message": "剛剛"
+  },
+  "minutesAgo": {
+    "message": "{0} 分鐘前"
+  },
+  "hoursAgo": {
+    "message": "{0} 小時前"
+  },
+  "daysAgo": {
+    "message": "{0} 天前"
+  }
+}

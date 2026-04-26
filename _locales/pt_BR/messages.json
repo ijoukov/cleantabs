@@ -1,0 +1,143 @@
+{
+  "appName": {
+    "message": "CleanTabs"
+  },
+  "appDescription": {
+    "message": "Encontre abas duplicadas, antigas, novas e correspondentes no Chrome, depois feche ou acesse rapidamente."
+  },
+  "loadingTabs": {
+    "message": "Carregando abas..."
+  },
+  "refresh": {
+    "message": "Atualizar"
+  },
+  "tabFiltersLabel": {
+    "message": "Filtros de abas"
+  },
+  "urlOrTitleLabel": {
+    "message": "URL ou título"
+  },
+  "searchUrlOrTitlePlaceholder": {
+    "message": "Pesquisar URL ou título"
+  },
+  "pageTextLabel": {
+    "message": "Texto da página"
+  },
+  "searchLoadedPageTextPlaceholder": {
+    "message": "Pesquisar texto carregado"
+  },
+  "search": {
+    "message": "Pesquisar"
+  },
+  "searching": {
+    "message": "Pesquisando"
+  },
+  "newTabs": {
+    "message": "Novas abas"
+  },
+  "clear": {
+    "message": "Limpar"
+  },
+  "selectResults": {
+    "message": "Selecionar resultados"
+  },
+  "clearSelection": {
+    "message": "Limpar seleção"
+  },
+  "closeResults": {
+    "message": "Fechar resultados"
+  },
+  "noMatchingTabs": {
+    "message": "Nenhuma aba correspondente."
+  },
+  "summary": {
+    "message": "{0} abas, {1} grupos de URL duplicada"
+  },
+  "visibleResults": {
+    "message": "{0} resultados visíveis"
+  },
+  "visibleResultsSelected": {
+    "message": "{0} resultados visíveis, {1} selecionados"
+  },
+  "selectCount": {
+    "message": "Selecionar {0}"
+  },
+  "closeSelectedCount": {
+    "message": "Fechar {0} selecionadas"
+  },
+  "closeMatchingCount": {
+    "message": "Fechar {0} correspondentes"
+  },
+  "closeCount": {
+    "message": "Fechar {0}"
+  },
+  "closeAll": {
+    "message": "Fechar tudo"
+  },
+  "closeTab": {
+    "message": "Fechar aba"
+  },
+  "keepOne": {
+    "message": "Manter 1"
+  },
+  "keepOneTitle": {
+    "message": "Fechar todas, exceto uma aba deste grupo"
+  },
+  "tabsDuplicateUrl": {
+    "message": "{0} abas - URL duplicada"
+  },
+  "oneTab": {
+    "message": "1 aba"
+  },
+  "selectTab": {
+    "message": "Selecionar {0}"
+  },
+  "goToTab": {
+    "message": "Ir para esta aba"
+  },
+  "untitled": {
+    "message": "(Sem título)"
+  },
+  "viewedAge": {
+    "message": "Vista {0}"
+  },
+  "couldNotCloseTabs": {
+    "message": "Não foi possível fechar todas as abas selecionadas. {0}"
+  },
+  "chromeRejectedRequest": {
+    "message": "O Chrome rejeitou a solicitação."
+  },
+  "couldNotActivateTab": {
+    "message": "Não foi possível ativar essa aba. {0}"
+  },
+  "pageTextSearchNeedsAccess": {
+    "message": "A pesquisa no texto da página precisa de acesso ao site. Permita o CleanTabs em todos os sites no menu de acesso da extensão."
+  },
+  "searchingPageText": {
+    "message": "Pesquisando texto da página por \"{0}\"..."
+  },
+  "contentSearchStatusMatches": {
+    "message": "{0} abas corresponderam ao texto da página."
+  },
+  "contentSearchStatusSkipped": {
+    "message": "{0} abas internas/do navegador ignoradas."
+  },
+  "contentSearchStatusFailed": {
+    "message": "{0} abas aparentemente pesquisáveis falharam. Primeiro erro: {1}"
+  },
+  "noUrl": {
+    "message": "(Sem URL)"
+  },
+  "justNow": {
+    "message": "agora"
+  },
+  "minutesAgo": {
+    "message": "há {0} min"
+  },
+  "hoursAgo": {
+    "message": "há {0} h"
+  },
+  "daysAgo": {
+    "message": "há {0} d"
+  }
+}

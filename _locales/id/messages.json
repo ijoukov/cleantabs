@@ -1,0 +1,143 @@
+{
+  "appName": {
+    "message": "CleanTabs"
+  },
+  "appDescription": {
+    "message": "Temukan tab Chrome duplikat, lama, baru, dan yang cocok, lalu tutup atau buka dengan cepat."
+  },
+  "loadingTabs": {
+    "message": "Memuat tab..."
+  },
+  "refresh": {
+    "message": "Segarkan"
+  },
+  "tabFiltersLabel": {
+    "message": "Filter tab"
+  },
+  "urlOrTitleLabel": {
+    "message": "URL atau judul"
+  },
+  "searchUrlOrTitlePlaceholder": {
+    "message": "Cari URL atau judul"
+  },
+  "pageTextLabel": {
+    "message": "Teks halaman"
+  },
+  "searchLoadedPageTextPlaceholder": {
+    "message": "Cari teks halaman yang dimuat"
+  },
+  "search": {
+    "message": "Cari"
+  },
+  "searching": {
+    "message": "Mencari"
+  },
+  "newTabs": {
+    "message": "Tab baru"
+  },
+  "clear": {
+    "message": "Hapus"
+  },
+  "selectResults": {
+    "message": "Pilih hasil"
+  },
+  "clearSelection": {
+    "message": "Hapus pilihan"
+  },
+  "closeResults": {
+    "message": "Tutup hasil"
+  },
+  "noMatchingTabs": {
+    "message": "Tidak ada tab yang cocok."
+  },
+  "summary": {
+    "message": "{0} tab, {1} grup URL duplikat"
+  },
+  "visibleResults": {
+    "message": "{0} hasil terlihat"
+  },
+  "visibleResultsSelected": {
+    "message": "{0} hasil terlihat, {1} dipilih"
+  },
+  "selectCount": {
+    "message": "Pilih {0}"
+  },
+  "closeSelectedCount": {
+    "message": "Tutup {0} yang dipilih"
+  },
+  "closeMatchingCount": {
+    "message": "Tutup {0} yang cocok"
+  },
+  "closeCount": {
+    "message": "Tutup {0}"
+  },
+  "closeAll": {
+    "message": "Tutup semua"
+  },
+  "closeTab": {
+    "message": "Tutup tab"
+  },
+  "keepOne": {
+    "message": "Simpan 1"
+  },
+  "keepOneTitle": {
+    "message": "Tutup semua kecuali satu tab di grup ini"
+  },
+  "tabsDuplicateUrl": {
+    "message": "{0} tab - URL duplikat"
+  },
+  "oneTab": {
+    "message": "1 tab"
+  },
+  "selectTab": {
+    "message": "Pilih {0}"
+  },
+  "goToTab": {
+    "message": "Buka tab ini"
+  },
+  "untitled": {
+    "message": "(Tanpa judul)"
+  },
+  "viewedAge": {
+    "message": "Dilihat {0}"
+  },
+  "couldNotCloseTabs": {
+    "message": "Tidak dapat menutup semua tab yang dipilih. {0}"
+  },
+  "chromeRejectedRequest": {
+    "message": "Chrome menolak permintaan."
+  },
+  "couldNotActivateTab": {
+    "message": "Tidak dapat mengaktifkan tab tersebut. {0}"
+  },
+  "pageTextSearchNeedsAccess": {
+    "message": "Pencarian teks halaman memerlukan akses situs. Izinkan CleanTabs di semua situs dari menu akses situs ekstensi."
+  },
+  "searchingPageText": {
+    "message": "Mencari teks halaman untuk \"{0}\"..."
+  },
+  "contentSearchStatusMatches": {
+    "message": "{0} tab cocok dengan teks halaman."
+  },
+  "contentSearchStatusSkipped": {
+    "message": "{0} tab browser/internal dilewati."
+  },
+  "contentSearchStatusFailed": {
+    "message": "{0} tab yang tampak dapat dicari gagal. Error pertama: {1}"
+  },
+  "noUrl": {
+    "message": "(Tidak ada URL)"
+  },
+  "justNow": {
+    "message": "baru saja"
+  },
+  "minutesAgo": {
+    "message": "{0} mnt lalu"
+  },
+  "hoursAgo": {
+    "message": "{0} jam lalu"
+  },
+  "daysAgo": {
+    "message": "{0} hr lalu"
+  }
+}

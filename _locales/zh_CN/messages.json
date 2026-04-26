@@ -1,0 +1,143 @@
+{
+  "appName": {
+    "message": "CleanTabs"
+  },
+  "appDescription": {
+    "message": "查找重复、陈旧、新建和匹配的 Chrome 标签页，并快速关闭或跳转。"
+  },
+  "loadingTabs": {
+    "message": "正在加载标签页..."
+  },
+  "refresh": {
+    "message": "刷新"
+  },
+  "tabFiltersLabel": {
+    "message": "标签页筛选"
+  },
+  "urlOrTitleLabel": {
+    "message": "URL 或标题"
+  },
+  "searchUrlOrTitlePlaceholder": {
+    "message": "搜索 URL 或标题"
+  },
+  "pageTextLabel": {
+    "message": "页面文本"
+  },
+  "searchLoadedPageTextPlaceholder": {
+    "message": "搜索已加载页面文本"
+  },
+  "search": {
+    "message": "搜索"
+  },
+  "searching": {
+    "message": "搜索中"
+  },
+  "newTabs": {
+    "message": "新标签页"
+  },
+  "clear": {
+    "message": "清除"
+  },
+  "selectResults": {
+    "message": "选择结果"
+  },
+  "clearSelection": {
+    "message": "清除选择"
+  },
+  "closeResults": {
+    "message": "关闭结果"
+  },
+  "noMatchingTabs": {
+    "message": "没有匹配的标签页。"
+  },
+  "summary": {
+    "message": "{0} 个标签页，{1} 个重复 URL 组"
+  },
+  "visibleResults": {
+    "message": "{0} 个可见结果"
+  },
+  "visibleResultsSelected": {
+    "message": "{0} 个可见结果，已选择 {1} 个"
+  },
+  "selectCount": {
+    "message": "选择 {0} 个"
+  },
+  "closeSelectedCount": {
+    "message": "关闭已选择的 {0} 个"
+  },
+  "closeMatchingCount": {
+    "message": "关闭匹配的 {0} 个"
+  },
+  "closeCount": {
+    "message": "关闭 {0} 个"
+  },
+  "closeAll": {
+    "message": "全部关闭"
+  },
+  "closeTab": {
+    "message": "关闭标签页"
+  },
+  "keepOne": {
+    "message": "保留 1 个"
+  },
+  "keepOneTitle": {
+    "message": "关闭此组中除一个以外的所有标签页"
+  },
+  "tabsDuplicateUrl": {
+    "message": "{0} 个标签页 - 重复 URL"
+  },
+  "oneTab": {
+    "message": "1 个标签页"
+  },
+  "selectTab": {
+    "message": "选择 {0}"
+  },
+  "goToTab": {
+    "message": "转到此标签页"
+  },
+  "untitled": {
+    "message": "（无标题）"
+  },
+  "viewedAge": {
+    "message": "查看于 {0}"
+  },
+  "couldNotCloseTabs": {
+    "message": "无法关闭所有已选择的标签页。{0}"
+  },
+  "chromeRejectedRequest": {
+    "message": "Chrome 拒绝了请求。"
+  },
+  "couldNotActivateTab": {
+    "message": "无法激活该标签页。{0}"
+  },
+  "pageTextSearchNeedsAccess": {
+    "message": "页面文本搜索需要网站访问权限。请在扩展程序的网站访问菜单中允许 CleanTabs 访问所有网站。"
+  },
+  "searchingPageText": {
+    "message": "正在搜索页面文本“{0}”..."
+  },
+  "contentSearchStatusMatches": {
+    "message": "{0} 个标签页匹配页面文本。"
+  },
+  "contentSearchStatusSkipped": {
+    "message": "已跳过 {0} 个浏览器/内部标签页。"
+  },
+  "contentSearchStatusFailed": {
+    "message": "{0} 个看似可搜索的标签页失败。第一个错误：{1}"
+  },
+  "noUrl": {
+    "message": "（无 URL）"
+  },
+  "justNow": {
+    "message": "刚刚"
+  },
+  "minutesAgo": {
+    "message": "{0} 分钟前"
+  },
+  "hoursAgo": {
+    "message": "{0} 小时前"
+  },
+  "daysAgo": {
+    "message": "{0} 天前"
+  }
+}
